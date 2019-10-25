@@ -1,0 +1,96 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11649619.html" id="cb_post_title_url">nginx 安装</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<h2>一、官网下载软件</h2>
+<h3><a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></h3>
+<h3>这里我下载的是1.12.2版本    <img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017153934557-224503438.png"/></h3>
+<p> </p>
+<h2>二、上传到Linux服务器</h2>
+<ul>
+<li>
+<h3>rz命令，或者Xshell软件，直接拖到对应目录</h3>
+</li>
+<li>
+<h3>解压目录  tar -xvf nginx-1.12.2.tar.gz</h3>
+</li>
+</ul>
+<p> </p>
+<h2>三、安装依赖</h2>
+<ul>
+<li>
+<h3>依赖：pcre   openssl   zlib  gcc</h3>
+</li>
+<li>
+<h3>可通过下载包进行安装，也可通过yum 安装，这里我们通过yum安装</h3>
+</li>
+<li>
+<h3>yum -y install  gcc zlib zlib-devel pcre-devel openssl openssl-devel</h3>
+</li>
+<li>
+<h3>安装检查：比如 pcre-config --version</h3>
+</li>
+</ul>
+<h3> </h3>
+<h2>四、安装Nginx</h2>
+<ul>
+<li>
+<h3>进入到解压目录，执行./configure</h3>
+</li>
+<li>
+<h3>make &amp;&amp; make install</h3>
+</li>
+<li>
+<h3>/usr/local/nginx 默认安装路径</h3>
+</li>
+<li>
+<h3>安装路径下的sbin文件下，./nginx -v   查看安装版本</h3>
+</li>
+<li>
+<h3>安装路径下的sbin文件下，执行./nginx，启动程序</h3>
+</li>
+</ul>
+<h3> </h3>
+<h3> </h3>
+<h2>五、防火墙设置</h2>
+<ul>
+<li>
+<h3>查看开放端口：firewall-cmd --list-all</h3>
+</li>
+<li>
+<h3>增加开放端口：firewall-cmd --add-port=80/tcp --permanent </h3>
+</li>
+<li>
+<h3>重启防火墙：firewall-cmd -reload</h3>
+</li>
+<li>
+<h3>备注：firewall-cmd --add-service=http -permanent 开发服务</h3>
+</li>
+</ul>
+<h3> </h3>
+<h2>六、访问Nginx页面，如下图，表示安装成功，我的80端口占用，改了90端口，所以连接有90</h2>
+<h3><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017161216714-1391533170.png"/></h3>
+<h3> </h3>
+</div></div>

@@ -1,0 +1,100 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11676068.html" id="cb_post_title_url">django框架数据库相关操作</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<h2>一、数据库表的创建</h2>
+<h3>1、创建表的代码</h3>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;"><span style="color: #000080; font-weight: bold;">from django.db <span style="color: #000080; font-weight: bold;">import models</span></span><br/><br/>class</span><span style="color: #000000;"> Nav (models.Model):
+    name</span>=models.CharField(max_length=10,unique=True,verbose_name=<span style="color: #800000;">"</span><span style="color: #800000;">导航名称</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">int可以不加长度，字符串类型必须加长度</span>
+    url=models.CharField(max_length=100,unique=True,verbose_name=<span style="color: #800000;">'</span><span style="color: #800000;">导航链接</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    classname</span>=models.CharField(max_length=50,unique=True,verbose_name=<span style="color: #800000;">'</span><span style="color: #800000;">导航图标</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    is_delete</span>=models.SmallIntegerField(default=1,verbose_name=<span style="color: #800000;">'</span><span style="color: #800000;">是否被删除</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    create_time</span>=models.DateTimeField(verbose_name=<span style="color: #800000;">'</span><span style="color: #800000;">创建时间</span><span style="color: #800000;">'</span>,auto_now_add=True) <span style="color: #008000;">#</span><span style="color: #008000;">auto_now_add插入数据自动取当前时间</span>
+    update_time=models.DateTimeField(verbose_name=<span style="color: #800000;">'</span><span style="color: #800000;">修改时间</span><span style="color: #800000;">'</span>,auto_now=True)<span style="color: #008000;">#</span><span style="color: #008000;">auto_now 修改时间自动取当前时间</span>
+
+    <span style="color: #0000ff;">def</span> <span style="color: #800080;">__str__</span><span style="color: #000000;">(self):
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> self.name
+
+    </span><span style="color: #0000ff;">class</span><span style="color: #000000;"> Meta:
+        verbose_name</span>=<span style="color: #800000;">'</span><span style="color: #800000;">导航表</span><span style="color: #800000;">'</span><span style="color: #000000;">
+        verbose_name_plural</span>=<span style="color: #000000;">verbose_name
+        db_table</span>=<span style="color: #800000;">'</span><span style="color: #800000;">nav</span><span style="color: #800000;">'</span> <span style="color: #008000;">#</span><span style="color: #008000;">指定表名</span>
+        ordering=[<span style="color: #800000;">'</span><span style="color: #800000;">update_time</span><span style="color: #800000;">'</span>] <span style="color: #008000;">#</span><span style="color: #008000;">查询数据的时候，用来排序的</span></pre>
+</div>
+<h3>2、运行命令，生成表</h3>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">python manage.py makemigrations   表结构
+ 
+python manage.py migrate 创建数据库表</span></pre>
+</div>
+<h2>二、表数据增加</h2>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">新增，批量插入，可通过循环控制</span>
+models.test.objects.create(name=<span style="color: #800000;">'</span><span style="color: #800000;">首页8</span><span style="color: #800000;">'</span>,url=<span style="color: #800000;">'</span><span style="color: #800000;">index8</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">新增第一种方法</span>
+models.test(name=<span style="color: #800000;">'</span><span style="color: #800000;">首页9</span><span style="color: #800000;">'</span>,url=<span style="color: #800000;">'</span><span style="color: #800000;">index9</span><span style="color: #800000;">'</span>).save() <span style="color: #008000;">#</span><span style="color: #008000;">第二种新增数据方法</span>
+
+<span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(10,100<span style="color: #000000;">):
+    models.test(name</span>=<span style="color: #800000;">'</span><span style="color: #800000;">首页%s</span><span style="color: #800000;">'</span>%i, url=<span style="color: #800000;">'</span><span style="color: #800000;">index%s</span><span style="color: #800000;">'</span>%<span style="color: #000000;">i).save()
+
+</span></pre>
+</div>
+<h2>三、表数据删除</h2>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">删除</span>
+models.test.objects.all().delete() <span style="color: #008000;">#</span><span style="color: #008000;">删除全部</span>
+models.test.objects.filter(id=3).delete() <span style="color: #008000;">#</span><span style="color: #008000;">指定删除</span></pre>
+</div>
+<h2>四、表数据修改</h2>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">修改</span>
+n=models.test.objects.get(id=100) <span style="color: #008000;">#</span><span style="color: #008000;">第一种修改方式</span>
+n.name=<span style="color: #800000;">"</span><span style="color: #800000;">wode</span><span style="color: #800000;">"</span><span style="color: #000000;">
+n.save()
+</span><span style="color: #008000;">#
+</span>models.test.objects.all().update(is_delete=0) <span style="color: #008000;">#</span><span style="color: #008000;">第二种修改方式</span></pre>
+</div>
+<h2>五、表数据查询</h2>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;"> 查询</span><span style="color: #008000;">
+#</span><span style="color: #008000;"> get方法查询的话，必须的保证这个数据查出来的只有1条，才可以</span>
+result = models.test.objects.get(name=<span style="color: #800000;">"</span><span style="color: #800000;">wode</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+result2 </span>= models.test.objects.get(id=109<span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(result)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(result2)
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;"> filter 可以查询多条数据</span>
+result = models.test.objects.filter(is_delete=<span style="color: #000000;">0)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(result)
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;"> 模糊查询</span>
+result = models.test.objects.filter(name__contains=<span style="color: #800000;">'</span><span style="color: #800000;">w</span><span style="color: #800000;">'</span>, id__gte=1)  <span style="color: #008000;">#</span><span style="color: #008000;"> gt大于，lt 小于，gte大于等于，lte小于等于，range范围之间，in在什么内</span>
+result = models.test.objects.exclude(id=100)  <span style="color: #008000;">#</span><span style="color: #008000;"> exclude排除，不等于</span>
+all =<span style="color: #000000;"> models.test.objects.all()
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(result)
+</span><span style="color: #0000ff;">print</span>(all)</pre>
+</div>
+<p> </p>
+</div></div>

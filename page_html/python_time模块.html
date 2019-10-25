@@ -1,0 +1,62 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11064103.html" id="cb_post_title_url">python_time模块</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>1、时间格式化输出</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  time
+
+</span><span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%y-%m-%d %H：%M：%S</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">当前时间按年月日，时分秒格式打印，且年仅显示后2为，比如2019仅显示19</span>
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">当前时间按年月日，时分秒格式打印</span>
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">当前格式按年月日格式打印</span>
+
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span>,time.localtime(1553265235))) <span style="color: #008000;">#</span><span style="color: #008000;">给定时间戳转换年月日格式</span>
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">'</span>,time.localtime())) <span style="color: #008000;">#</span><span style="color: #008000;">当地时间转换年月日，时分秒格式</span></pre>
+</div>
+<p>2、获取当前时间戳</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">print</span>(time.time())  <span style="color: #008000;">#</span><span style="color: #008000;">获取当前时间的时间戳</span></pre>
+</div>
+<p>3、获取时间元组</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">print</span>(time.gmtime()) <span style="color: #008000;">#</span><span style="color: #008000;">获取标准时区的当前时间的时间元组</span>
+<span style="color: #0000ff;">print</span>(time.localtime()) <span style="color: #008000;">#</span><span style="color: #008000;">获取当地时区的当前时间的时间元组</span></pre>
+</div>
+<p>4、格式化时间转时间元组</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">print</span>(time.strptime(<span style="color: #800000;">'</span><span style="color: #800000;">2019-06-22 22：38：29</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">把格式2019-06-22 22：38：29时间转换成时间元组</span>
+<span style="color: #0000ff;">print</span>(time.strptime(<span style="color: #800000;">'</span><span style="color: #800000;">2019-06-22</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">把格式2019-06-22 时间转换成时间元组</span></pre>
+</div>
+<p>5、把时间元组转换成时间戳</p>
+<div class="cnblogs_code">
+<pre>tm1=time.strptime(<span style="color: #800000;">'</span><span style="color: #800000;">2019-06-22 22：38：29</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">格式化好的时间转换成时间元组</span>
+tm2=time.strptime(<span style="color: #800000;">'</span><span style="color: #800000;">2019-06-22</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">格式化好的时间转换成时间元组</span>
+tm3=time.localtime() <span style="color: #008000;">#</span><span style="color: #008000;">获取当前时间元组</span>
+<span style="color: #0000ff;">print</span>(time.mktime(tm1)) <span style="color: #008000;">#</span><span style="color: #008000;">时间元组转换为时间戳</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(time.mktime(tm2))
+</span><span style="color: #0000ff;">print</span>(time.mktime(tm3))</pre>
+</div>
+<p> </p>
+</div></div>

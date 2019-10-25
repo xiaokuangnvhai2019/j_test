@@ -1,0 +1,64 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11175570.html" id="cb_post_title_url">爬虫网站图片且保存到本地</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p> </p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">https://www.cnblogs.com/zjltt/p/6955965.html 写的比较好的正则网站</span><span style="color: #008000;">
+#</span><span style="color: #008000;">写个简单的爬虫，把这个链接http://so.fengniao.com/index.php?action=Image&amp;keyword=%E7%A7%81%E6%88%BF，里面所有的图片保存到本地</span>
+<span style="color: #0000ff;">import</span><span style="color: #000000;">  requests
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;">  re
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">获取URL返回内容</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> url_text(url):
+    text </span>=<span style="color: #000000;"> requests.get(url)
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;">  text.text
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">返回内容截取IMG的URL</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> img_url(text):
+    img_list</span>=re.findall(<span style="color: #800000;">'</span><span style="color: #800000;">\&lt;img.*/\&gt;\&lt;/a\&gt;</span><span style="color: #800000;">'</span>,text) <span style="color: #008000;">#</span><span style="color: #008000;">正则提取img标签</span>
+    img_url_list=[] <span style="color: #008000;">#</span><span style="color: #008000;">定义放img图片的url</span>
+    <span style="color: #0000ff;">for</span> row <span style="color: #0000ff;">in</span><span style="color: #000000;"> img_list:
+        img_url_list.append(row.split(</span><span style="color: #800000;">'</span> <span style="color: #800000;">'</span>)[1].split(<span style="color: #800000;">'</span><span style="color: #800000;">"</span><span style="color: #800000;">'</span>)[1]) <span style="color: #008000;">#</span><span style="color: #008000;">对IMG标签分割，提取URL部分，放入list</span>
+    <span style="color: #0000ff;">return</span> img_url_list <span style="color: #008000;">#</span><span style="color: #008000;">返回img的URL的list</span>
+<br/>#下载图片函数
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> download_img(img_url_list,path):
+    </span><span style="color: #0000ff;">for</span> name_num,url <span style="color: #0000ff;">in</span> enumerate(img_url_list): <span style="color: #008000;">#</span><span style="color: #008000;">枚举遍历图片list下标及URL</span>
+        img_result=requests.get(url) <span style="color: #008000;">#</span><span style="color: #008000;">请求获取图片内容</span>
+        name=<span style="color: #800000;">"</span><span style="color: #800000;">%s%s.jpg</span><span style="color: #800000;">"</span>%(path,name_num) <span style="color: #008000;">#</span><span style="color: #008000;">下载图片的路径及名称，名称是list下标</span>
+        img_file=open(name,<span style="color: #800000;">'</span><span style="color: #800000;">wb</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">二进制打开文件</span>
+        img_file.write(img_result.content) <span style="color: #008000;">#</span><span style="color: #008000;">把图片内容写入文件</span>
+        close_file(img_file) <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> close_file(file):
+    file.close()
+
+path</span>=<span style="color: #800000;">'</span><span style="color: #800000;">./pic/</span><span style="color: #800000;">'</span><span style="color: #000000;">
+url</span>=<span style="color: #800000;">'</span><span style="color: #800000;">http://so.fengniao.com/index.php?action=Image&amp;keyword=%E7%A7%81%E6%88%BF</span><span style="color: #800000;">'</span><span style="color: #000000;">
+download_img(img_url(url_text(url)),path) </span><span style="color: #008000;">#</span><span style="color: #008000;">调取下载图片函数</span></pre>
+</div>
+<p> </p>
+</div></div>

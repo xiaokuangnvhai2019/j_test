@@ -1,0 +1,60 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11201312.html" id="cb_post_title_url">python_类中方法带参数</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>类中方法带参数</p>
+<p>1、构造函数带参数，实例化时就需要带参数</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> Person(): <span style="color: #008000;">#</span><span style="color: #008000;">定义类</span>
+    <span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span>(self,name,leg=8): <span style="color: #008000;">#</span><span style="color: #008000;">构造函数带参数</span>
+        self.name=<span style="color: #000000;">name
+        self.leg</span>=<span style="color: #000000;">leg
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> run(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会跑</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(self.name)
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(self.leg)
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> fly(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会飞</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+zwj</span>=Person(<span style="color: #800000;">"</span><span style="color: #800000;">xiaomei</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">实例化时需要带参数</span>
+zwj.run()</pre>
+</div>
+<p>2、构造函数未带参数，实例方法带参数，实例化无需带参数，调用方法时带参数即可</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> Person(): <span style="color: #008000;">#</span><span style="color: #008000;">定义类</span>
+    <span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span>(self): <span style="color: #008000;">#</span><span style="color: #008000;">构造函数不带参数</span>
+       <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">jjj</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">def</span> run(self,name,leg=8): <span style="color: #008000;">#</span><span style="color: #008000;">实例方法带参数</span>
+        <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会跑</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(name)
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(leg)
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> fly(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会飞</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+zwj</span>=Person() <span style="color: #008000;">#</span><span style="color: #008000;">实例化时不需要带参数</span>
+zwj.run(<span style="color: #800000;">"</span><span style="color: #800000;">xiaomei</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">调取方法需要带参数</span></pre>
+</div>
+<p> </p>
+</div></div>

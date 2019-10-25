@@ -1,0 +1,58 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11343003.html" id="cb_post_title_url">Jenkins_rpm安装</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>Jenkins有多种安装方式，下面通过rpm进行安装</p>
+<p>前提：Java 的jdk已安装</p>
+<p>一、下载Jenkins的rpm包</p>
+<p>下载地址：https://jenkins.io/zh/download/</p>
+<p>下载rpm结尾的包</p>
+<p> </p>
+<p>二、上传服务器及安装</p>
+<p>rz命令将下载的rpm包传送到服务器</p>
+<p>通过  "rpm -ivh  Jenkins的rpm包名"  命令进行安装</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812223208187-583068334.png"/></p>
+<p>三、默认安装路径</p>
+<p style="text-align: left;">自动安装完成之后： </p>
+<p style="text-align: left;">/usr/lib/jenkins/jenkins.war    WAR包 </p>
+<p style="text-align: left;">/etc/sysconfig/jenkins       配置文件</p>
+<p style="text-align: left;">/var/lib/jenkins/        默认的JENKINS_HOME目录</p>
+<p>/var/log/jenkins/jenkins.log    Jenkins日志文件</p>
+<p> </p>
+<p>四、修改配置文件，添加JDK路径</p>
+<p>如果不修改配置文件，添加jdk路径，service jenkins start 会报错，如下图：</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812223542086-664313643.png"/></p>
+<p>" vi /etc/init.d/jenkins " 编辑Jenkins配置文件，添加jdk的Java路径，如下图</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812223801278-2099658522.png"/></p>
+<p>配置完成，再次启动Jenkins</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812223839651-1515836345.png"/></p>
+<p>这样表示启动成功</p>
+<p> </p>
+<p>备注：可通过把service jenkins start 配置到开启启动中，如果系统版本高支持systemctl可以通过systemctl enable jenkins命令，把Jenkins配置自启动项</p>
+<p> </p>
+<p>五、通过浏览器ip:8080进行访问Jenkins，出现如下图，表示成功，密码在提示的路径中，按步骤操作即可</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812224014284-110201259.png"/></p>
+<p> </p>
+</div></div>

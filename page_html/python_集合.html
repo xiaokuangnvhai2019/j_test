@@ -1,0 +1,80 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11000721.html" id="cb_post_title_url">python_集合</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>一、集合特点：</p>
+<p style="margin-left: 30px;">1、集合是无序的</p>
+<p style="margin-left: 30px;">2、集合天生去重</p>
+<p style="margin-left: 30px;">3、集合无下标</p>
+<p>二、集合的操作</p>
+<div class="cnblogs_code">
+<pre>s=set() <span style="color: #008000;">#</span><span style="color: #008000;">定义空集合</span>
+<span style="color: #000000;">
+s.add(</span>1) <span style="color: #008000;">#</span><span style="color: #008000;">集合添加元素</span>
+
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(s)
+
+s.remove(</span>1) <span style="color: #008000;">#</span><span style="color: #008000;">集合删除元素</span>
+
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(s)
+
+
+</span>/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 /Users/dongyf/Documents/python/besttest_study/<span style="color: #000000;">test.py
+{</span>1<span style="color: #000000;">}
+set()<br/><br/></span></pre>
+</div>
+<p>三、集合的交集，并集，差集，对称差集</p>
+<div class="cnblogs_code">
+<pre>x=[1,2,3,4<span style="color: #000000;">]
+y</span>=[1,6,7,2<span style="color: #000000;">]
+
+z</span>=<span style="color: #000000;">set(x)
+t</span>=<span style="color: #000000;">set(y)
+
+</span><span style="color: #0000ff;">print</span>(z.intersection(t)) <span style="color: #008000;">#</span><span style="color: #008000;">取交集</span>
+<span style="color: #0000ff;">print</span>(z&amp;<span style="color: #000000;">t)
+
+</span><span style="color: #0000ff;">print</span>(z.difference(t)) <span style="color: #008000;">#</span><span style="color: #008000;">取差集 在a（方法前的）集合里面有，在b集合里面没有的</span>
+<span style="color: #0000ff;">print</span>(z-<span style="color: #000000;">t)
+
+</span><span style="color: #0000ff;">print</span>(z.union(t)) <span style="color: #008000;">#</span><span style="color: #008000;">取并集 把2个集合加在一起，重复的去重</span>
+<span style="color: #0000ff;">print</span>(z|<span style="color: #000000;">t)
+
+</span><span style="color: #0000ff;">print</span>(z.symmetric_difference(t)) <span style="color: #008000;">#</span><span style="color: #008000;">对称差集  把2个集合加在一起，重复的去重</span>
+<span style="color: #0000ff;">print</span>(z^<span style="color: #000000;">t)
+
+
+</span>/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 /Users/dongyf/Documents/python/besttest_study/<span style="color: #000000;">test.py
+{</span>1, 2<span style="color: #000000;">}
+{</span>1, 2<span style="color: #000000;">}
+{</span>3, 4<span style="color: #000000;">}
+{</span>3, 4<span style="color: #000000;">}
+{</span>1, 2, 3, 4, 6, 7<span style="color: #000000;">}
+{</span>1, 2, 3, 4, 6, 7<span style="color: #000000;">}
+{</span>3, 4, 6, 7<span style="color: #000000;">}
+{</span>3, 4, 6, 7}</pre>
+</div>
+<p> </p>
+</div></div>

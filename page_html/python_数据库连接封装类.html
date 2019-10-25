@@ -1,0 +1,53 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11200931.html" id="cb_post_title_url">python_数据库连接封装类</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>如下为数据库连接封装为类，通过析构和构造函数进行自连接和自关闭</p>
+<p> </p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span><span style="color: #000000;"> MySQL:
+    </span><span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span><span style="color: #000000;">(self):
+        self.conn </span>= pymysql.connect(host=<span style="color: #800000;">'</span><span style="color: #800000;">IP</span><span style="color: #800000;">'</span>, user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>, password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+                           db</span>=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>, port=3306, charset=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+                           autocommit</span>=<span style="color: #000000;">True)
+        self.cur </span>=<span style="color: #000000;"> self.conn.cursor(pymysql.cursors.DictCursor)
+    </span><span style="color: #0000ff;">def</span> <span style="color: #800080;">__del__</span><span style="color: #000000;">(self):
+        self.cur.close()
+        self.conn.close()
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">连接已经被关闭了</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> execute_one(self,sql):
+        self.cur.execute(sql)
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> self.cur.fetchone()
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> execute_many(self,sql):
+        self.cur.execute(sql)
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> self.cur.fetchall()
+
+
+m </span>=<span style="color: #000000;"> MySQL()
+m.execute_one(</span><span style="color: #800000;">'</span><span style="color: #800000;">show tables;</span><span style="color: #800000;">'</span>)</pre>
+</div>
+<p> </p>
+</div></div>

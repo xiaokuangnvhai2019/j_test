@@ -1,0 +1,56 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11187235.html" id="cb_post_title_url">过滤敏感词</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>该过滤敏感词汇方法，主要思路是遍历原文件，读取每行数据，查看是否存在敏感词，如果存在敏感词，替换为**，把修改后的内容的输出到临时文件中，即：不改变原有文件内容</p>
+<p>当然也还有很多其他的方法，比如直接打印，或者源内容是字符串等，思路大概一致</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">过滤敏感词汇</span><span style="color: #008000;">
+#</span><span style="color: #008000;">读文件，输出带有敏感词汇进行*号替换</span>
+word_lib=[<span style="color: #800000;">'</span><span style="color: #800000;">小白</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">小黑</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">小绿</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">小蓝</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">小红</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">小紫</span><span style="color: #800000;">'</span>,] <span style="color: #008000;">#</span><span style="color: #008000;">敏感词汇</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">过滤敏感词汇</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> word_filter(word_lib,old_file,new_file):
+    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> old_file: <span style="color: #008000;">#</span><span style="color: #008000;">遍历原文件</span>
+        <span style="color: #0000ff;">for</span> j <span style="color: #0000ff;">in</span> word_lib: <span style="color: #008000;">#</span><span style="color: #008000;">遍历词汇库</span>
+            <span style="color: #0000ff;">if</span> j <span style="color: #0000ff;">in</span> i: <span style="color: #008000;">#</span><span style="color: #008000;">判断每行是否存在敏感词</span>
+               i=i.replace(j,<span style="color: #800000;">'</span><span style="color: #800000;">**</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">对应存在的敏感词进行替换</span>
+        new_file.write(i) <span style="color: #008000;">#</span><span style="color: #008000;">敏感词替换的文件内容保存到临时文件</span>
+    close_file(old_file) <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+    close_file(new_file) <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">打开文件</span>
+<span style="color: #0000ff;">def</span> open_file(filename,mode=<span style="color: #800000;">'</span><span style="color: #800000;">r</span><span style="color: #800000;">'</span><span style="color: #000000;">): 
+    result</span>=open(filename,mode,encoding=<span style="color: #800000;">'</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">return</span>  result <span style="color: #008000;">#</span><span style="color: #008000;">返回文件对象</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> close_file(file):
+    file.close()
+
+word_filter(word_lib,open_file(</span><span style="color: #800000;">'</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">'</span>),open_file(<span style="color: #800000;">'</span><span style="color: #800000;">c.txt</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">w</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">调取过滤敏感词函数</span></pre>
+</div>
+<p> </p>
+</div></div>

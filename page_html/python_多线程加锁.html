@@ -1,0 +1,81 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11271878.html" id="cb_post_title_url">python_多线程加锁</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p> </p>
+<p>python3多线程可以不加锁，每个多线程就自带锁</p>
+<p>python2多线程必须加锁，多线程本身不带锁</p>
+<p> </p>
+<p>加锁有两种方式，一种如下图： </p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> time, threading
+count</span>=0 <span style="color: #008000;">#</span><span style="color: #008000;">声明全局变量</span>
+lock=threading.Lock() <span style="color: #008000;">#</span><span style="color: #008000;">申请一把锁</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> lajifenlei():
+    </span><span style="color: #0000ff;">global</span> count <span style="color: #008000;">#</span><span style="color: #008000;">引用全局变量</span>
+    lock.acquire()  <span style="color: #008000;">#</span><span style="color: #008000;">加锁</span>
+    count+=1<span style="color: #000000;">
+    lock.release() </span><span style="color: #008000;">#</span><span style="color: #008000;">释放锁</span>
+    time.sleep(1<span style="color: #000000;">)
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(count)
+
+</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(10<span style="color: #000000;">):
+    th </span>= threading.Thread(target=lajifenlei,) <span style="color: #008000;">#</span><span style="color: #008000;">声明线程数</span>
+    th.start() <span style="color: #008000;">#</span><span style="color: #008000;">启动线程</span>
+<span style="color: #0000ff;">while</span> threading.activeCount()!=1<span style="color: #000000;">:
+    </span><span style="color: #0000ff;">pass</span><span style="color: #000000;">
+
+C:\Users\zhaow\AppData\Local\Programs\Python\Python37\python.exe D:</span>/study/python/atp/lib/<span style="color: #000000;">t.py
+</span>10
+1010
+101010
+10
+
+10
+
+1010</pre>
+</div>
+<p>另一种类似打开和关闭文件的with方法，自动开关锁</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> time, threading
+count</span>=0 <span style="color: #008000;">#</span><span style="color: #008000;">声明全局变量</span>
+lock=threading.Lock() <span style="color: #008000;">#</span><span style="color: #008000;">申请一把锁</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> lajifenlei():
+    </span><span style="color: #0000ff;">global</span> count <span style="color: #008000;">#</span><span style="color: #008000;">引用全局变量</span>
+<span style="color: #000000;">
+    with lock: </span><span style="color: #008000;">#</span><span style="color: #008000;">with模块自动加锁及解锁</span>
+     count+=1<span style="color: #000000;">
+
+    time.sleep(</span>1<span style="color: #000000;">)
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(count)
+
+</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(10<span style="color: #000000;">):
+    th </span>= threading.Thread(target=lajifenlei,) <span style="color: #008000;">#</span><span style="color: #008000;">声明线程数</span>
+    th.start() <span style="color: #008000;">#</span><span style="color: #008000;">启动线程</span>
+<span style="color: #0000ff;">while</span> threading.activeCount()!=1<span style="color: #000000;">:
+    </span><span style="color: #0000ff;">pass</span></pre>
+</div>
+<p> </p>
+</div></div>

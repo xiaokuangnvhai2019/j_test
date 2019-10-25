@@ -1,0 +1,93 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11202519.html" id="cb_post_title_url">对比多层字典是否相同函数</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p> </p>
+<p>现有2个字典且是多层级的，找出2个字典的不同且输出，实现如下：</p>
+<div class="cnblogs_code">
+<pre>ok_req=<span style="color: #000000;">{
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">version</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">9.0.0</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">is_test</span><span style="color: #800000;">"</span><span style="color: #000000;">: True,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">store</span><span style="color: #800000;">"</span>: <span style="color: #800000;">""</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">urs</span><span style="color: #800000;">"</span>: <span style="color: #800000;">""</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">device</span><span style="color: #800000;">"</span><span style="color: #000000;">: {
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">os</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">android</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">imei</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">99001062198893</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">device_id</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">CQliMWEyYTEzNTYyYzk5MzJmCTJlNmY3Zjkx</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">mac</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">02:00:00:00:00:00</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">galaxy_tag</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">CQliMWEyYTEzNTYyYzk5MzJmCTJlNmY3Zjkx</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">udid</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">a34b1f67dd5797df93fdd8b072f1fb8110fd0db6</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">network_status</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">wifi</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    },
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">adunit</span><span style="color: #800000;">"</span><span style="color: #000000;">: {
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">category</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">VIDEO</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">location</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">1</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">app</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">7A16FBB6</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">blacklist</span><span style="color: #800000;">"</span>: <span style="color: #800000;">""</span><span style="color: #000000;">
+    },
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">ext_param</span><span style="color: #800000;">"</span><span style="color: #000000;">:{
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">is_start</span><span style="color: #800000;">"</span><span style="color: #000000;"> : 0,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">vId</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">VW0BRMTEV</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    }
+}
+not_ok</span>=<span style="color: #000000;">{
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">version</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">9.0.0</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">is_test</span><span style="color: #800000;">"</span><span style="color: #000000;">: True,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">urs</span><span style="color: #800000;">"</span>: <span style="color: #800000;">""</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">store</span><span style="color: #800000;">"</span>: <span style="color: #800000;">""</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">device</span><span style="color: #800000;">"</span><span style="color: #000000;">: {
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">os</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">android</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">imei</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">99001062298893</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">device_id</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">CQliMWEyYTEzNTYyYzk5MzJmCTJlNmY3Zjkx</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">mac</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">02:00:00:00:00:00</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">galaxy_tag</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">CQliMWEyYTEzNTYyYzk5MzJmCTJlNmY3Zjkx</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">udid</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">a34b1f67dd5797da93fdd8b072f1fb8110fd0db6</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">network_status</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">wifi</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    },
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">adunit</span><span style="color: #800000;">"</span><span style="color: #000000;">: {
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">category</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">VIDEO</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">location</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">1</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">app</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">7A16FBB6</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">blacklist</span><span style="color: #800000;">"</span>: <span style="color: #800000;">""</span><span style="color: #000000;">
+    },</span><span style="color: #800000;">"</span><span style="color: #800000;">ext_param</span><span style="color: #800000;">"</span><span style="color: #000000;">: {
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">is_start</span><span style="color: #800000;">"</span><span style="color: #000000;">: 0,
+        </span><span style="color: #800000;">"</span><span style="color: #800000;">vid</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">VW0BRMTEV</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    }
+}
+</span><span style="color: #008000;">#</span><span style="color: #008000;">对比多层字典函数</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> dic_compare(dic_name,compar_dic):
+    </span><span style="color: #0000ff;">for</span> key, value <span style="color: #0000ff;">in</span> dic_name.items():  <span style="color: #008000;">#</span><span style="color: #008000;">遍历字典</span>
+        <span style="color: #0000ff;">if</span> key <span style="color: #0000ff;">not</span> <span style="color: #0000ff;">in</span> compar_dic.keys(): <span style="color: #008000;">#</span><span style="color: #008000;">如果KEY不在对比的字典中，输出字典</span>
+            <span style="color: #0000ff;">print</span><span style="color: #000000;">(key, value)
+        </span><span style="color: #0000ff;">if</span> type(value) != dict: <span style="color: #008000;">#</span><span style="color: #008000;">如果value不是多层</span>
+            <span style="color: #0000ff;">if</span> value <span style="color: #0000ff;">not</span> <span style="color: #0000ff;">in</span> compar_dic.values(): <span style="color: #008000;">#</span><span style="color: #008000;">不是多层的，如果value和对比字典不一致输出</span>
+                <span style="color: #0000ff;">print</span><span style="color: #000000;">(key, value)
+        </span><span style="color: #0000ff;">if</span>  type(value) == dict: <span style="color: #008000;">#</span><span style="color: #008000;">如果value是多层的，那么通过递归再次走上面代码进行对比</span>
+<span style="color: #000000;">            dic_compare(value,compar_dic[key])
+
+dic_compare(ok_req,not_ok) </span><span style="color: #008000;">#</span><span style="color: #008000;">调用函数</span></pre>
+</div>
+<p> </p>
+</div></div>

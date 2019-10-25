@@ -1,0 +1,50 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11644868.html" id="cb_post_title_url">nginx-简介及概念</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p><strong>Nginx简介</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">Nginx 是一个高性能的HTTP和反向代理服务器，特点是占用内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好
+
+Nginx 专为性能优化而开发，性能是其最重要的考量，实现上非常注重效率，能经受高负载的考验，有报告表明能支持高达50000个并发连接数</span></pre>
+</div>
+<p><strong>一、正向代理</strong></p>
+<p><strong>正向代理：如果把局域网外的intent想象成一个巨大的资源库，则局域网中的客户端要访问Internet，则需要通过代理服务器来访问，这种代理服务就称为正向代理</strong></p>
+<p> <img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017134417977-1795793945.png"/></p>
+<p> </p>
+<p> </p>
+<p><strong>二、反向代理</strong></p>
+<p><strong>反向代理：其实客户端对代理是无感知的，因为客户端不需要任何配置就可以访问，我们需要将请求发送到反向代理服务器，有反向代理服务器去选择目标服务器获取数据后，在返回给客户端，此时反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器的IP地址</strong></p>
+<p><strong><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017135048824-1520003694.png"/></strong></p>
+<p><strong>三、负载均衡</strong></p>
+<p><strong>负载均衡：将请求分发到多个服务器上，将负载分发到不同的服务器，也就是我们所说的负载均衡</strong></p>
+<p><strong><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017135847071-2011914063.png"/></strong></p>
+<p> </p>
+<p> </p>
+<p><strong>四、动静分离</strong></p>
+<p><strong>动静分离：为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度，降低原来单个服务器的压力</strong></p>
+<p><strong><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017140350269-1253322258.png"/></strong></p>
+<p> </p>
+</div></div>

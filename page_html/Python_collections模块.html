@@ -1,0 +1,72 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11613433.html" id="cb_post_title_url">Python_collections模块</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>collections 模块----Python标准库，是数据结构常用模块</p>
+<p>常用类型有：</p>
+<p>　　计数器（Counter）</p>
+<p>　　双向队列（deque）</p>
+<p>　　默认字典（defaultdict）</p>
+<p>　　有序字典（OrderedDict）</p>
+<p>　　可命名元组（namedtuple）</p>
+<p> </p>
+<p>一、Counter</p>
+<p>主要功能：将元素数量统计，然后计数返回一个字典，键为元素，值为元素个数</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">from</span> collections <span style="color: #0000ff;">import</span><span style="color: #000000;">  Counter
+
+str</span>=<span style="color: #800000;">"</span><span style="color: #800000;">abcbcaccbbad</span><span style="color: #800000;">"</span><span style="color: #000000;">
+li</span>=[2,3,43,3,45,54,33,33,1<span style="color: #000000;">]
+d</span>={<span style="color: #800000;">'</span><span style="color: #800000;">d</span><span style="color: #800000;">'</span>:3,<span style="color: #800000;">'</span><span style="color: #800000;">f</span><span style="color: #800000;">'</span>:4,<span style="color: #800000;">'</span><span style="color: #800000;">g</span><span style="color: #800000;">'</span>:3,<span style="color: #800000;">'</span><span style="color: #800000;">h</span><span style="color: #800000;">'</span>:5<span style="color: #000000;">}
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">获取元素个数，返回字典</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(dict(Counter(str)))
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(dict(Counter(d)))
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(dict(Counter(li)))
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">most_common(int) 按照元素出现的次数进行从高到低的排序，返回前int个元素的字典</span>
+<span style="color: #0000ff;">print</span>(Counter(str).most_common(2<span style="color: #000000;">))
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">elements返回经过计算器Counter后的元素，返回的是一个迭代器</span>
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">''</span><span style="color: #000000;">.join(Counter(str).elements()))
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">update更新，做加法，加上对应的个数</span>
+x=<span style="color: #000000;">Counter(str)
+x.update(</span><span style="color: #800000;">"</span><span style="color: #800000;">sas1</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(dict(x))
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">subtract,做减法，减去对于的个数</span>
+y=<span style="color: #000000;">Counter(li)
+y.subtract([</span>3,2<span style="color: #000000;">])
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(dict(y))
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(y)
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">获取key和value</span>
+<span style="color: #0000ff;">print</span>(list(Counter(str).items())) <span style="color: #008000;">#</span><span style="color: #008000;">字典的key和value</span>
+<span style="color: #0000ff;">print</span>(list(Counter(str).keys())) <span style="color: #008000;">#</span><span style="color: #008000;">字典的key</span>
+<span style="color: #0000ff;">print</span>(list(Counter(str).values())) <span style="color: #008000;">#</span><span style="color: #008000;">字典的value</span></pre>
+</div>
+<p> </p>
+</div></div>

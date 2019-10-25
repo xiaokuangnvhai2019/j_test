@@ -1,0 +1,153 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11064097.html" id="cb_post_title_url">python_os模块</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>1、listdir() <span style="font-size: 12px;">目录下的所有文件或文件夹名，返回list</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.listdir(<span style="color: #800000;">"</span><span style="color: #800000;">.</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">当前路径文件list</span>
+<span style="color: #0000ff;">print</span>(os.listdir(<span style="color: #800000;">"</span><span style="color: #800000;">../../</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">上两级目录文件list</span>
+<span style="color: #0000ff;">print</span>(os.listdir(<span style="color: #800000;">"</span><span style="color: #800000;">D:\study</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">绝对路径下文件list</span></pre>
+</div>
+<p>2、<span style="font-size: 12px;">os.path.isfile() 判断是否是文件</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.path.isfile(<span style="color: #800000;">"</span><span style="color: #800000;">.</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">返回false</span>
+<span style="color: #0000ff;">print</span>(os.path.isfile(<span style="color: #800000;">"</span><span style="color: #800000;">./log/aaa-20190611.log</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">返回true</span></pre>
+</div>
+<p>3、<span style="font-size: 12px;">os.path.isdir() 判断是否是文件</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.path.isdir(<span style="color: #800000;">"</span><span style="color: #800000;">.</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">返回true</span>
+<span style="color: #0000ff;">print</span>(os.path.isdir(<span style="color: #800000;">"</span><span style="color: #800000;">./log/aaa-20190611.log</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">返回false</span></pre>
+</div>
+<p>4、<span style="font-size: 12px;">os.mkdir() 创建文件夹 创建时父目录不存在会报错</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+os.mkdir(<span style="color: #800000;">"</span><span style="color: #800000;">./logs/aa</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">父目录找不到报错</span>
+os.mkdir(<span style="color: #800000;">"</span><span style="color: #800000;">./log/b</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">父目录存在可正常建目录</span></pre>
+</div>
+<p>5、<span style="font-size: 12px;">os.makedir()创建文件夹 创建是父目录不存在不会报错，会报错</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+os.makedirs(<span style="color: #800000;">"</span><span style="color: #800000;">./logs/aa</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">父目录找不到可正常建目录</span>
+os.makedirs(<span style="color: #800000;">"</span><span style="color: #800000;">./log/b</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">父目录存在可正常建目录</span></pre>
+</div>
+<p> 6、<span style="font-size: 12px;">os.getcwd() 获取当前目录路径<br/></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.getcwd()) <span style="color: #008000;">#</span><span style="color: #008000;">输出当前目录路径</span>
+<span style="color: #0000ff;">print</span>(type(os.getcwd())) <span style="color: #008000;">#</span><span style="color: #008000;">当前目录路径以字符串方式进行返回</span>
+<span style="color: #000000;">
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+D:\study\python\test
+</span>&lt;<span style="color: #0000ff;">class</span> <span style="color: #800000;">'</span><span style="color: #800000;">str</span><span style="color: #800000;">'</span>&gt;</pre>
+</div>
+<p> 7、<span style="font-size: 12px;">os.chdir() #切换目录</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.getcwd()) <span style="color: #008000;">#</span><span style="color: #008000;">输出当前目录路径</span>
+os.chdir(<span style="color: #800000;">"</span><span style="color: #800000;">./log</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">切换目录到log下</span>
+<span style="color: #0000ff;">print</span>(os.getcwd()) <span style="color: #008000;">#</span><span style="color: #008000;">输出当前目录路径</span>
+<span style="color: #000000;">
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+D:\study\python\test
+D:\study\python\test\log</span></pre>
+</div>
+<p>8、<span style="font-size: 12px;">os.cpu_count() 获取当前cpu的个数</span></p>
+<p><span style="font-size: 12px;"> <span class="cnblogs_code"><span style="color: #0000ff;">import</span> os <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span> <span style="color: #0000ff;">print</span>(os.cpu_count()) <span style="color: #008000;">#</span><span style="color: #008000;">获取当前电脑的CPU的核数</span></span> </span></p>
+<p><span style="font-size: 12px;">9、</span><span style="font-size: 12px;">os.system() 执行操作系统命令，且</span><span style="font-size: 12px;">只能执行，不能拿到结果</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span><span style="color: #008000;">
+#</span><span style="color: #008000;">os.system，帮你执行ipconfig命令了，获取到结果了 也会打印出，但是拿不到值</span>
+x=os.system(<span style="color: #800000;">"</span><span style="color: #800000;">ipconfig</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">os.system无返回值%s</span><span style="color: #800000;">"</span> %x) <span style="color: #008000;">#</span><span style="color: #008000;">无执行命令的返回值，x值为0</span></pre>
+</div>
+<p> 10、<span style="font-size: 12px;">os.popen() 执行操作系统命令并可以返回结果，且需要read一下</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+x=os.popen(<span style="color: #800000;">'</span><span style="color: #800000;">ipconfig</span><span style="color: #800000;">'</span>).read()   <span style="color: #008000;">#</span><span style="color: #008000;">执行操作系统命令并可以返回结果,需要read一下</span>
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">os.popen有返回值%s</span><span style="color: #800000;">"</span>%x)  </pre>
+</div>
+<p>11、删除文件夹及文件，且文件夹必须是空的文件夹</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+os.rmdir(<span style="color: #800000;">"</span><span style="color: #800000;">./logs/aa</span><span style="color: #800000;">"</span>)  <span style="color: #008000;">#</span><span style="color: #008000;">删除文件夹,且文件夹必须为空文件夹</span>
+os.remove(<span style="color: #800000;">"</span><span style="color: #800000;">./log/aaa-20190611.log</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">删除文件</span>
+os.removedirs(<span style="color: #800000;">"</span><span style="color: #800000;">./logs</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">删除文件夹,且文件夹必须为空文件夹</span></pre>
+</div>
+<p>12、<span style="font-size: 12px;">os.path.dirname()   获取父目录</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.path.dirname(<span style="color: #800000;">"</span><span style="color: #800000;">D:\study</span><span style="color: #800000;">"</span><span style="color: #000000;">))
+</span><span style="color: #0000ff;">print</span>(os.path.dirname(<span style="color: #800000;">"</span><span style="color: #800000;">d:\study\java</span><span style="color: #800000;">"</span><span style="color: #000000;">))
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+D:\
+d:\study</span></pre>
+</div>
+<p>13、<span style="font-size: 12px;">os.path.join ()   </span><span style="font-size: 12px;">拼接路径，不需要管路径连接符</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+path=<span style="color: #800000;">"</span><span style="color: #800000;">d:\study\python</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(os.path.join(path,<span style="color: #800000;">"</span><span style="color: #800000;">\log</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">输出d:\log  原因是在os.path.join()第二个参数"\log"起始字符是\</span>
+<span style="color: #0000ff;">print</span>(os.path.join(path,<span style="color: #800000;">"</span><span style="color: #800000;">log</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">输出d:\study\python\log</span></pre>
+</div>
+<p>14、<span style="font-size: 12px;">os.path.exists() 判断文件存在不存在，返回的是FLASE和TRUE</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.path.exists(<span style="color: #800000;">"</span><span style="color: #800000;">./log</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">判断文件夹是否存在</span>
+<span style="color: #0000ff;">print</span>(os.path.exists(<span style="color: #800000;">"</span><span style="color: #800000;">./log/aaa-20190612.log</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">判断文件是否存在</span></pre>
+</div>
+<p> 15、<span style="font-size: 12px;">os.path.split()  把路径和文件名分割   且返回值中第一个元素是路径，第二个元素是文件名</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.path.split(r<span style="color: #800000;">"</span><span style="color: #800000;">d:\study\python\a.txt</span><span style="color: #800000;">"</span>)[0]) <span style="color: #008000;">#</span><span style="color: #008000;">第一个元素是路径</span>
+<span style="color: #0000ff;">print</span>(os.path.split(r<span style="color: #800000;">"</span><span style="color: #800000;">d:\study\python\a.txt</span><span style="color: #800000;">"</span>)[1]) <span style="color: #008000;">#</span><span style="color: #008000;">第二个元素是文件夹</span>
+<span style="color: #0000ff;">print</span>(os.path.split(r<span style="color: #800000;">"</span><span style="color: #800000;">d:\study\python\a.txt</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">返回元组</span>
+<span style="color: #0000ff;">print</span>(os.path.split(r<span style="color: #800000;">"</span><span style="color: #800000;">d:\study\python</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">如果都是路径也会分割放入元组，其结果为('d:\\study', 'python')</span></pre>
+</div>
+<p>16、<span style="font-size: 12px;">os.path.abspath()  相对路径转绝对路径<br/></span></p>
+<p><span style="font-size: 12px;">备注：一个点表示当前路径，两个点表示上级目录</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span>  os  <span style="color: #008000;">#</span><span style="color: #008000;">os模块的导入</span>
+<span style="color: #0000ff;">print</span>(os.path.abspath(<span style="color: #800000;">"</span><span style="color: #800000;">../../</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">上级的上级目录</span>
+<span style="color: #0000ff;">print</span>(os.path.abspath(<span style="color: #800000;">'</span><span style="color: #800000;">.</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">当前目录</span>
+<span style="color: #0000ff;">print</span>(os.path.abspath(<span style="color: #800000;">'</span><span style="color: #800000;">../jmeter/</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">上级目录下的一个路径</span> </pre>
+</div>
+<p>17、获取文件相关的时间</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  os
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> time
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">最近一次查看文件的时间</span>
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">"</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">"</span>,time.localtime(os.path.getatime(<span style="color: #800000;">'</span><span style="color: #800000;">access.log</span><span style="color: #800000;">'</span><span style="color: #000000;">))))
+</span><span style="color: #008000;">#</span><span style="color: #008000;">最近一次改变文件的时间</span>
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">"</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">"</span>,time.localtime(os.path.getctime(<span style="color: #800000;">'</span><span style="color: #800000;">access.log</span><span style="color: #800000;">'</span><span style="color: #000000;">))))
+</span><span style="color: #008000;">#</span><span style="color: #008000;">最近一次修改文件的时间</span>
+<span style="color: #0000ff;">print</span>(time.strftime(<span style="color: #800000;">"</span><span style="color: #800000;">%Y-%m-%d %H：%M：%S</span><span style="color: #800000;">"</span>,time.localtime(os.path.getmtime(<span style="color: #800000;">'</span><span style="color: #800000;">access.log</span><span style="color: #800000;">'</span>))))</pre>
+</div>
+<p> </p>
+</div></div>

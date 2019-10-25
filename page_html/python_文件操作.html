@@ -1,0 +1,132 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/10945594.html" id="cb_post_title_url">python_文件操作</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p><strong>文件打开方式</strong></p>
+<p style="margin-left: 60px;">一种是读模式，一种是写模式，一种是追加模式<br/><br/>open('a.txt',r) 读模式，只能读，不能写，打开不存在的文件会报错<br/>open('a.txt',w) 写模式，只能写不能读，会覆盖文件以前的内容，文件不存在的会创建<br/>open('a.txt',a) 追加模式，在原来文件的内容上增加新内容，文件不存在的会创建，只能写不能读<br/><br/>open('a.txt',r+) 读写模式，写的时候直接从0的位置开始写，会把原来的值清除<br/>open('a.txt',w+) 写读模式 写的时候直接从0的位置开始写，会把原来的值清除<br/>open('a.txt',a+) 追加读模式<br/> <br/>总结：<br/>1、只要是r有关，打开不存在的文件都会报错。<br/>2、只要和w有关，都会清空原来的文件<br/>3、a+文件指针默认是在末尾的，如果想读到内容，先要把文件指针移动到最前面</p>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px; margin-left: 60px;">
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">一、文件读取</div>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">文件读取后指针位置发生变化，如果重复读取，需要指针归0</div>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">
+<div class="cnblogs_code">
+<pre>f=open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">r</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span>(f.read())  <span style="color: #008000;">#</span><span style="color: #008000;">读取全部</span>
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">=================</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+f.seek(0)
+</span><span style="color: #0000ff;">print</span>(f.readline()) <span style="color: #008000;">#</span><span style="color: #008000;">读取下一行</span>
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">=================</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+f.seek(0)
+</span><span style="color: #0000ff;">print</span>(f.readlines()) <span style="color: #008000;">#</span><span style="color: #008000;">读取全部并list返回</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+zhaozhao3,</span>123456,2<span style="color: #000000;">
+zhaozhao1,</span>1234567,3<span style="color: #000000;">
+zhaozhao2,</span>123456,3<span style="color: #000000;">
+zhaozhao6,</span>123456
+
+=================<span style="color: #000000;">
+zhaozhao3,</span>123456,2
+
+=================<span style="color: #000000;">
+[</span><span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao3,123456,2\n</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao1,1234567,3\n</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao2,123456,3\n</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao6,123456\n</span><span style="color: #800000;">'</span>] </pre>
+</div>
+<p>二、文件写操作</p>
+<div class="cnblogs_code">
+<pre>f=open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">w</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">擦除写模式</span>
+li=[<span style="color: #800000;">"</span><span style="color: #800000;">sfjkf\n</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">slfjkf\n</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">sjlsjf\n</span><span style="color: #800000;">"</span><span style="color: #000000;">]
+f.writelines(li) </span><span style="color: #008000;">#</span><span style="color: #008000;">可传入list</span>
+f.writelines(<span style="color: #800000;">"</span><span style="color: #800000;">xiaoxiao\n</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">可传入字符串</span>
+f.write(<span style="color: #800000;">"</span><span style="color: #800000;">zhaozhao6,123456</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">只可传入字符串</span>
+<span style="color: #000000;">f.close()
+
+
+sfjkf
+slfjkf
+sjlsjf
+xiaoxiao
+zhaozhao6,</span>123456</pre>
+</div>
+<p>三、指针位置</p>
+<p>seek：指针位置跳转</p>
+<p>tell：获取当前指针位置</p>
+<div class="cnblogs_code">
+<pre>f=open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">a+</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">擦除写模式</span>
+f.seek(0) <span style="color: #008000;">#</span><span style="color: #008000;">指针位置归0</span>
+f.read() <span style="color: #008000;">#</span><span style="color: #008000;">读取文件，指针移动到结尾处</span>
+point=f.tell() <span style="color: #008000;">#</span><span style="color: #008000;">获取指针位置</span>
+f.seek(point) <span style="color: #008000;">#</span><span style="color: #008000;">跳到获取的指针位置</span>
+f.write(<span style="color: #800000;">"</span><span style="color: #800000;">sfsfdf</span><span style="color: #800000;">"</span>)  <span style="color: #008000;">#</span><span style="color: #008000;">追加写</span>
+f.close() <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span></pre>
+</div>
+<p>四：其他操作</p>
+<div class="cnblogs_code">
+<pre>f=open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">a+</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">擦除写模式</span>
+<span style="color: #000000;">f.seek(0)
+f.truncate() </span><span style="color: #008000;">#</span><span style="color: #008000;">文件清空</span>
+f.close() <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span></pre>
+</div>
+<p>五：文件with模式打开</p>
+<p>with方式打开一个或多个文件的写法，另外with打开无需再用close进行关闭文件</p>
+<div class="cnblogs_code">
+<pre>with open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">) as f:
+    f.read()
+
+with open (</span><span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span>) as f ,open(<span style="color: #800000;">"</span><span style="color: #800000;">b.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">'</span><span style="color: #800000;">a+</span><span style="color: #800000;">'</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">) as f2:
+    f.read()
+    f2.write(</span><span style="color: #800000;">"</span><span style="color: #800000;">df</span><span style="color: #800000;">"</span>)</pre>
+</div>
+<p>六、文件的修改</p>
+<p>文件的修改有2种方式，如下图：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  os
+</span><span style="color: #008000;">#</span><span style="color: #008000;">源文件读取到字符串中，修改后再写入源文件</span>
+with open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">'</span><span style="color: #800000;">a+</span><span style="color: #800000;">'</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">) as f:
+    f.seek(0) </span><span style="color: #008000;">#</span><span style="color: #008000;">指针归0</span>
+    result=f.read() <span style="color: #008000;">#</span><span style="color: #008000;">读取文件内容到字符串</span>
+    content=result.replace(<span style="color: #800000;">"</span><span style="color: #800000;">xiao</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">da</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">修改文件内容</span>
+    f.seek(0) <span style="color: #008000;">#</span><span style="color: #008000;">指针归0</span>
+    f.truncate() <span style="color: #008000;">#</span><span style="color: #008000;">清除文件内容</span>
+    f.write(content) <span style="color: #008000;">#</span><span style="color: #008000;">把修改后的内容写入文件</span>
+
+
+<span style="color: #008000;">#</span><span style="color: #008000;">逐行修改，且一个文件读，另外一个文件写，写完后，源文件删除，新文件重新命名为源文件名称</span>
+f=open(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+f2</span>=open(<span style="color: #800000;">"</span><span style="color: #800000;">b.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">'</span><span style="color: #800000;">w</span><span style="color: #800000;">'</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> f:
+    result</span>=i.upper() <span style="color: #008000;">#</span><span style="color: #008000;">逐行文件内容改大写</span>
+    f2.write(result) <span style="color: #008000;">#</span><span style="color: #008000;">逐行写入第二个文件</span>
+f.close() <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+f2.close() <span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+os.remove(<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">删除源文件</span>
+os.rename(<span style="color: #800000;">"</span><span style="color: #800000;">b.txt</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">重新命名第二个文件</span></pre>
+</div>
+<p> </p>
+<p>备注：打开文件如果带路径的建议加上r,防止路径字符转义</p>
+<p>例如：f=open(r<span style="color: #800000;">"c:/study/<span style="color: #800000;">a.txt<span style="color: #800000;">",encoding=<span style="color: #800000;">"<span style="color: #800000;">utf-8<span style="color: #800000;">"<span style="color: #000000;">)</span></span></span></span></span></span></span></p>
+<p> </p>
+</div>
+</div>
+</div></div>

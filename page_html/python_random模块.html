@@ -1,0 +1,68 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11002111.html" id="cb_post_title_url">python_random模块</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>random模块主要用于产生随机数</p>
+<p>1、random</p>
+<p>生成随机数几种方法，如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  string
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;">  random
+
+passwd</span>=random.randint(1,23) <span style="color: #008000;">#</span><span style="color: #008000;">随机产生1-23之间的一个随机数，包含1和23</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(passwd)
+
+passwd2</span>=random.sample(string.ascii_letters,5) <span style="color: #008000;">#</span><span style="color: #008000;">随机产生5个字母（大写或小写）</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(passwd2)
+
+passwd3</span>=random.choice(string.ascii_letters) <span style="color: #008000;">#</span><span style="color: #008000;">随机产生1个字母（大写或小写）</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(passwd3)
+
+passwd4</span>=random.choices([1,2,3],weights=[10,20,30]) <span style="color: #008000;">#</span><span style="color: #008000;">按权重随机产生1个数字</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(passwd4)
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+</span>15<span style="color: #000000;">
+[</span><span style="color: #800000;">'</span><span style="color: #800000;">V</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">n</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">P</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">d</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+O
+[</span>2]</pre>
+</div>
+<p> </p>
+<p>2、产生小数及list洗牌</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  random
+</span><span style="color: #0000ff;">print</span>(random.uniform(1,999)) <span style="color: #008000;">#</span><span style="color: #008000;">产生1-999之间的小数</span>
+<span style="color: #000000;">
+l</span>=[1,2,3,4<span style="color: #000000;">]
+random.shuffle(l) </span><span style="color: #008000;">#</span><span style="color: #008000;">洗牌  只能传list，且无返回值</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(l)
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+</span>876.0676444884089<span style="color: #000000;">
+[</span>2, 3, 1, 4]</pre>
+</div>
+<p> </p>
+</div></div>

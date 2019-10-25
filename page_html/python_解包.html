@@ -1,0 +1,67 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11074634.html" id="cb_post_title_url">python_解包</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>1、解包直接把这个元组,list,集合按顺序进行传参，当然字符串也是可以的传参，只要不是key=value的格式都可以</p>
+<div> </div>
+<div>此外：集合也是无序的，最好也不要用集合的方式</div>
+<div> </div>
+<div>备注：解包出了的个数要与传参个数保持一致</div>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">解包--list,元组，集合</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> connect(ip,port,username,password):
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(ip)
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(port)
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(username)
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(password)
+
+info_list</span>=[<span style="color: #800000;">'</span><span style="color: #800000;">192.168.1.1</span><span style="color: #800000;">'</span>,3309,<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+info_tuple</span>=(<span style="color: #800000;">'</span><span style="color: #800000;">192.168.1.1</span><span style="color: #800000;">'</span>,3309,<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+info_set</span>={<span style="color: #800000;">'</span><span style="color: #800000;">192.168.1.1</span><span style="color: #800000;">'</span>,3309,<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">}
+
+connect(</span>*<span style="color: #000000;">info_list)
+connect(</span>*<span style="color: #000000;">info_tuple)
+connect(</span>*info_set)</pre>
+</div>
+<p>2、字典方式解包</p>
+<div>两个*号这种方式就可以用做字典传参</div>
+<div> </div>
+<div>另外这种传参字典的key，必须和函数参数名称一样</div>
+<div class="cnblogs_code">
+<pre>dic={<span style="color: #800000;">"</span><span style="color: #800000;">name</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">zhaozhao</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">password</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">123456</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> dic_fun(name,password):
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(name)
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(password)
+
+dic_fun(</span>**<span style="color: #000000;">dic)
+
+
+</span>/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 /Users/dongyf/Documents/python/besttest_study/<span style="color: #000000;">test.py
+zhaozhao
+</span>123456</pre>
+</div>
+<p> </p>
+</div></div>

@@ -1,0 +1,50 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11206590.html" id="cb_post_title_url">一个字符串里面aAd123sdacD12dad2，然后遇到数字取第一个，后面的数字用来分隔</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>实现结果如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">一个字符串里面aAd123sdacD12dad2，然后遇到数字取第一个，后面的数字用来分隔，结果如下</span><span style="color: #008000;">
+#</span><span style="color: #008000;">【aAd1，sdacD1，dad2】</span>
+<span style="color: #0000ff;">import</span><span style="color: #000000;"> string
+str</span>=<span style="color: #800000;">'</span><span style="color: #800000;">aAd123sdacD12dad2</span><span style="color: #800000;">'</span> <span style="color: #008000;">#</span><span style="color: #008000;">字符串</span>
+on_off=False <span style="color: #008000;">#</span><span style="color: #008000;">开关默认False</span>
+str_join=<span style="color: #800000;">''</span> <span style="color: #008000;">#</span><span style="color: #008000;">字符串拼接</span>
+result=[] <span style="color: #008000;">#</span><span style="color: #008000;">结果LIST</span>
+<span style="color: #0000ff;">for</span> word <span style="color: #0000ff;">in</span> str: <span style="color: #008000;">#</span><span style="color: #008000;">遍历字符串</span>
+    <span style="color: #0000ff;">if</span> word <span style="color: #0000ff;">in</span> string.digits: <span style="color: #008000;">#</span><span style="color: #008000;">加入遇到数字</span>
+        <span style="color: #0000ff;">if</span> on_off==False: <span style="color: #008000;">#</span><span style="color: #008000;">如果开关是False</span>
+            result.append(str_join+<span style="color: #800000;">''</span>.join(word)) <span style="color: #008000;">#</span><span style="color: #008000;">把第一个数字拼接到字符串中且加入结果list</span>
+            str_join=<span style="color: #800000;">''</span> <span style="color: #008000;">#</span><span style="color: #008000;">临时拼接字符串清空</span>
+            on_off = True <span style="color: #008000;">#</span><span style="color: #008000;">开关开启true</span>
+        <span style="color: #0000ff;">if</span> on_off == True: <span style="color: #008000;">#</span><span style="color: #008000;">开关TRUE</span>
+            <span style="color: #0000ff;">continue</span> <span style="color: #008000;">#</span><span style="color: #008000;">开关开启true说明还是数字，不需要，无处理，继续循环</span>
+    <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+        str_join </span>=  str_join+<span style="color: #800000;">''</span>.join(word) <span style="color: #008000;">#</span><span style="color: #008000;">非数字，加入临时字符串</span>
+        on_off =False <span style="color: #008000;">#</span><span style="color: #008000;">非数字开关设置False</span>
+<span style="color: #0000ff;">print</span>(result) <span style="color: #008000;">#</span><span style="color: #008000;">输出结果LIST</span></pre>
+</div>
+<p> </p>
+</div></div>

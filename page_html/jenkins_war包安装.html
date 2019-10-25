@@ -1,0 +1,63 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11338781.html" id="cb_post_title_url">jenkins_war包安装</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>Jenkins有多种安装方式，下面是运行war包方式进行安装的一种方式</p>
+<p>一、下载Jenkins的war包</p>
+<p>下载地址：https://jenkins.io/zh/download/</p>
+<p>下载最下方的war的包</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812112532302-666860119.png"/></p>
+<p> </p>
+<p>二、上传Linux</p>
+<p>通过rz上传命令，上传到Linux</p>
+<p> </p>
+<p>三、安装Jenkins</p>
+<p>1、运行war文件</p>
+<p>运行命令：Java -jar  jenkins.war，出现running，表示war包启动正常，如下图</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812112902070-647367210.png"/></p>
+<p>2、运行war会产生一个安装解锁密码，复制该密码到文本，后续安装需要该密码，密码如下：</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113106044-1081487608.png"/></p>
+<p>3、通过ip:8080访问Jenkins，进行界面安装，Jenkins默认是8080，如果和Tomcat冲突，请先修改Tomcat端口号</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113252729-842241795.png"/></p>
+<p>4、解锁Jenkins，把复制的解锁密码粘贴到密码栏</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113419292-26627935.png"/></p>
+<p>5、自定义安装，一般选择安装推荐插件，也可自定义插件</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113456559-854321371.png"/></p>
+<p>6、待插件安装完毕，创建一个管理员用户</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113617604-843613439.png"/></p>
+<p>7、实例配置，根据需要进行配置</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113655295-1602712940.png"/></p>
+<p>8、到此就安装完毕了，点击开始，就可以使用Jenkins了</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190812113740674-1073432717.png"/></p>
+<p>四、配置Jenkins为开机启动项</p>
+<p> 开启启动项配置注意事项，由于Jenkins依赖JDK的运行，所以开启的运行顺序是个问题，另外如果直接配置 Java -jar  目录文件这种方式，其不会开机启动，会卡死，不是在后台运行而是在控制台，需要在命令后面加上</p>
+<div> &gt; /dev/null 2&gt;&amp;1 &amp;  ，如果想看日志的话，把/dev/null 换成/tmp/jenkins.log<br/>
+</div>
+<div> </div>
+<div>
+<div>yum安装，然后用systemctl enable jenkins设置成自动启动就行了，这种方式安装方便</div>
+</div>
+<div> </div>
+</div></div>

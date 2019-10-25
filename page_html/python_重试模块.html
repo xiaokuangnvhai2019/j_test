@@ -1,0 +1,54 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11281650.html" id="cb_post_title_url">python_重试模块</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>参考网址：http://www.nnzhp.cn/archives/812</p>
+<p>安装第3方模块 pip3 install retrying</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> requests
+</span><span style="color: #0000ff;">from</span> retrying <span style="color: #0000ff;">import</span><span style="color: #000000;"> retry
+
+count</span>=<span style="color: #000000;">0
+@retry(stop_max_attempt_number</span>=4)<span style="color: #008000;">#</span><span style="color: #008000;">重试次数4</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> test():
+    </span><span style="color: #0000ff;">global</span><span style="color: #000000;"> count
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">run</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">if</span> count!=5<span style="color: #000000;">:
+        count</span>=1
+        <span style="color: #0000ff;">raise</span>  Exception(<span style="color: #800000;">'</span><span style="color: #800000;">出错了</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">重试4次后，仍不成功，给予提示,如果在规定的重试次数内重试成功，就不在提示</span>
+<span style="color: #000000;">
+test() </span><span style="color: #008000;">#</span><span style="color: #008000;">调取函数</span>
+<span style="color: #000000;">
+@retry(stop_max_attempt_number</span>=3,stop_max_delay=1000<span style="color: #000000;">)
+</span><span style="color: #008000;">#</span><span style="color: #008000;">stop_max_attempt_number最大重试次数, 3次， stop_max_delay是3次重试间隔多少毫秒，间隔1秒</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> test2():
+    r</span>=requests.get(<span style="color: #800000;">'</span><span style="color: #800000;">http://localhost:8080/chapter02/welcome.html </span><span style="color: #800000;">'</span>,{<span style="color: #800000;">'</span><span style="color: #800000;">xx</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">xx</span><span style="color: #800000;">'</span><span style="color: #000000;">})
+    </span><span style="color: #0000ff;">if</span> <span style="color: #800000;">'</span><span style="color: #800000;">请稍后重试</span><span style="color: #800000;">'</span> <span style="color: #0000ff;">in</span><span style="color: #000000;"> r.text:
+        </span><span style="color: #008000;">#</span><span style="color: #008000;"> 自己判断什么时候重试，比如说服务端返回某个信息，就主动抛出一个异常，这样它就会自动重试</span>
+        <span style="color: #0000ff;">raise</span> Exception(<span style="color: #800000;">'</span><span style="color: #800000;">服务端现在有点问题</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+test2()</span></pre>
+</div>
+<p> </p>
+</div></div>

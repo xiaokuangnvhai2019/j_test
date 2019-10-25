@@ -1,0 +1,65 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11356442.html" id="cb_post_title_url">pycharm+git+github项目上传</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>一、前提</p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:csharp;gutter:true;">Windows电脑
+
+Python环境已有
+
+pycharm已安装好<br/><br/>Github已注册账号
+</pre>
+</div>
+<p>二、Git安装</p>
+<div>
+<div>
+<p>为什么要安装GIT，这是因为Github的配置只是告诉了Pycharm你的账号和密码，Pycharm还不知道如何进行版本控制操作，它底层还是需要调用git的功能的。</p>
+<p>因此，请提前下载并安装git程序到你的本机。 Windows中，可以使用Git-2.8.1-64-bit，请自行百度下载并安装</p>
+<p>安装完毕需设置一下，如下：</p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:csharp;gutter:true;">$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+</pre>
+</div>
+<p> 因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。</p>
+<p>注意<code>git config</code>命令的<code>--global</code>参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置</p>
+<p>三、配置</p>
+<p>1、setting--&gt;version control ---&gt;github</p>
+</div>
+<img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815102649785-1089375967.png"/>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815103005388-935227882.png"/></p>
+<p> 2、version control ---&gt;Git--&gt;选择Git安装路径</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815104240429-1582809837.png"/></p>
+<p>3、建立远程仓库并提交代码，vcs--&gt;import into version control----&gt;share project on github</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815104354251-1183519862.png"/></p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815104931182-904321008.png"/></p>
+<p> </p>
+<p> <img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815105117909-146526053.png"/></p>
+<p>到此pycharm就配置好了，就可以使用了，比如pull ,push，可在Git签中进行操作，和git一样的</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190815105244209-2070977716.png"/></p>
+<p> </p>
+</div>
+</div></div>

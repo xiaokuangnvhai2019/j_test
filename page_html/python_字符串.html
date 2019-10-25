@@ -1,0 +1,175 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/10943722.html" id="cb_post_title_url">python_字符串</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>1、字符串去除空格及换行符</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  pprint
+s</span>=<span style="color: #800000;">"</span><span style="color: #800000;">  skffkdj  </span><span style="color: #800000;">"</span><span style="color: #000000;">
+pprint.pprint(s.strip()) </span><span style="color: #008000;">#</span><span style="color: #008000;">去除左右空格及换行</span>
+pprint.pprint(s.lstrip()) <span style="color: #008000;">#</span><span style="color: #008000;">去除左空格及换行</span>
+pprint.pprint(s.rstrip()) <span style="color: #008000;">#</span><span style="color: #008000;">去除右空格及换行</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+</span><span style="color: #800000;">'</span><span style="color: #800000;">skffkdj</span><span style="color: #800000;">'</span>
+<span style="color: #800000;">'</span><span style="color: #800000;">skffkdj  </span><span style="color: #800000;">'</span>
+<span style="color: #800000;">'</span><span style="color: #800000;">  skffkdj</span><span style="color: #800000;">'</span></pre>
+</div>
+<p> </p>
+<p>2、字符串替换操作</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">abc de fg</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s.replace(<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">A</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">替换用后面的值替换前面的值</span>
+<span style="color: #0000ff;">print</span>(s.replace(<span style="color: #800000;">'</span> <span style="color: #800000;">'</span>,<span style="color: #800000;">''</span>))  <span style="color: #008000;">#</span><span style="color: #008000;">替换空格</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+Abc de fg
+abcdefg</span></pre>
+</div>
+<p> </p>
+<p>3、字符串索引</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">abcdefgaa</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s.index(<span style="color: #800000;">'</span><span style="color: #800000;">c</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">返回字符串的索引</span>
+<span style="color: #0000ff;">print</span>(s.count(<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">统计字符串出现次数</span>
+<span style="color: #0000ff;">print</span>(s.find(<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>))  <span style="color: #008000;">#</span><span style="color: #008000;">返回字符串的索引，当多个返回第一个，当字符不在字符串，返回-1</span>
+<span style="color: #0000ff;">print</span>(s.find(<span style="color: #800000;">'</span><span style="color: #800000;">y</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">字符不存在，返回-1</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+</span>2
+3<span style="color: #000000;">
+0
+</span>-1</pre>
+</div>
+<p>4、字符以什么开头或结尾，常见例子：不知道字符的全部，仅知道开始或结尾来查询该字符串</p>
+<pre>startswith和endswith返回为<span style="color: #000000;">True</span>和False</pre>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">abcdefgaa</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s.startswith(<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">字符串是否以a开头</span>
+<span style="color: #0000ff;">print</span>(s.endswith(<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">字符串是否以a结尾</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+True
+True</span></pre>
+</div>
+<p>5、字符串大小写转换</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">abcdefgaa</span><span style="color: #800000;">"</span><span style="color: #000000;">
+s2</span>=<span style="color: #800000;">"</span><span style="color: #800000;">ASDWWE</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s2.lower()) <span style="color: #008000;">#</span><span style="color: #008000;">字符串转小写</span>
+<span style="color: #0000ff;">print</span>(s.upper()) <span style="color: #008000;">#</span><span style="color: #008000;">字符串转大写</span>
+<span style="color: #0000ff;">print</span>(s.capitalize()) <span style="color: #008000;">#</span><span style="color: #008000;">字符串转首字母大写</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+asdwwe
+ABCDEFGAA
+Abcdefgaa</span></pre>
+</div>
+<p>6、字符串是不是整数</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">abcdefgaa</span><span style="color: #800000;">"</span><span style="color: #000000;">
+s2</span>=<span style="color: #800000;">"</span><span style="color: #800000;">1234</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(s.isdigit())
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(s2.isdigit())
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+False
+True</span></pre>
+</div>
+<p>7、字符串居中左右加分界线</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">abcdefgaa</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s.center(20,<span style="color: #800000;">"</span><span style="color: #800000;">=</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">字符串+等号整体长度，=表示左右加的符号</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+</span>=====abcdefgaa======</pre>
+</div>
+<p>8、字符串补0操作</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">1</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s.zfill(3)) <span style="color: #008000;">#</span><span style="color: #008000;">字符串填充，3位数，不足的补0</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+</span>001</pre>
+</div>
+<p>9、判断字符</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">DFD</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span>(s.isupper())  <span style="color: #008000;">#</span><span style="color: #008000;">是不是大写字母</span>
+<span style="color: #0000ff;">print</span>(s.islower())   <span style="color: #008000;">#</span><span style="color: #008000;">是不是小写字母</span>
+<span style="color: #0000ff;">print</span>(s.isalpha())  <span style="color: #008000;">#</span><span style="color: #008000;">是字母和汉字才会返回true，其他的都返回false</span>
+<span style="color: #0000ff;">print</span>(s.isalnum()) <span style="color: #008000;">#</span><span style="color: #008000;">是数字，字母和汉字才会返回true，其他的都返回false</span>
+<span style="color: #0000ff;">print</span>(s.isspace())  <span style="color: #008000;">#</span><span style="color: #008000;">是否是空格</span>
+<span style="color: #000000;">
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+True
+False
+True
+True
+False</span></pre>
+</div>
+<p>10、字符串占位通过format和format_map传参</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">"</span><span style="color: #800000;">{name},{passwd}</span><span style="color: #800000;">"</span> <span style="color: #008000;">#</span><span style="color: #008000;">字符串存在大括号标识</span>
+s2=s.format(passwd=<span style="color: #800000;">"</span><span style="color: #800000;">12345</span><span style="color: #800000;">"</span>,name=<span style="color: #800000;">"</span><span style="color: #800000;">zhaozhao</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">通过赋值就行传参</span>
+s3=s.format_map({<span style="color: #800000;">"</span><span style="color: #800000;">name</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">zhaozhao2</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">passwd</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">123456</span><span style="color: #800000;">"</span>}) <span style="color: #008000;">#</span><span style="color: #008000;">通过字典的方式进行传参</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(s2)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(s3)
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+zhaozhao,</span>12345<span style="color: #000000;">
+zhaozhao2,</span>123456</pre>
+</div>
+<p>11、字符串分割</p>
+<p>字符串分割默认是空格分割，如果是其他符合分割需要给予传参，另外分割后的字符串是个list集合</p>
+<div class="cnblogs_code">
+<pre>stus=<span style="color: #800000;">'</span><span style="color: #800000;">xiaoming,xiaohei,xiaobai,jaojun</span><span style="color: #800000;">'</span>
+<span style="color: #0000ff;">print</span>(stus.split(<span style="color: #800000;">'</span><span style="color: #800000;">,</span><span style="color: #800000;">'</span>))     <span style="color: #008000;">#</span><span style="color: #008000;">分割字符串，默认是空格，如果指定了以指定的分隔符进行分割</span>
+<span style="color: #000000;">
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+[</span><span style="color: #800000;">'</span><span style="color: #800000;">xiaoming</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">xiaohei</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">xiaobai</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">jaojun</span><span style="color: #800000;">'</span>]</pre>
+</div>
+<p>12、字符串串联</p>
+<p>list可通过join把每个字符串连接起来，作为一个整体的字符串进行输出</p>
+<div class="cnblogs_code">
+<pre>li=[<span style="color: #800000;">'</span><span style="color: #800000;">xiaoming</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">xiaohei</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">xiaobai</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">jaojun</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+</span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">,</span><span style="color: #800000;">'</span>.join(li))    <span style="color: #008000;">#</span><span style="color: #008000;">把list里面的每个元素通过指定的字符串连接起来</span>
+<span style="color: #000000;">
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+xiaoming,xiaohei,xiaobai,jaojun</span></pre>
+</div>
+<p> </p>
+</div></div>

@@ -1,0 +1,43 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11434465.html" id="cb_post_title_url">jenkins报jmeter.log (Permission denied)</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p> </p>
+<p>问题：jenkins执行jmeter的时候报无log权限</p>
+<p> </p>
+<pre class="console-output">2019-08-30 21:00:17,306 main ERROR FileManager (jmeter.log) java.io.FileNotFoundException: jmeter.log (Permission denied) java.io.FileNotFoundException: jmeter.log (Permission denied)</pre>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190830131005687-1875015735.png"/></p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p>解决方案：给日志加权限即可</p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:csharp;gutter:true;">进入jmeter的bin目录下执行
+
+chmod 777 *.log
+</pre>
+</div>
+<p> </p>
+</div></div>

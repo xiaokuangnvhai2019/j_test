@@ -1,0 +1,69 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/10934165.html" id="cb_post_title_url">zancun</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UserLogin:
+</span><span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span><span style="color: #000000;">(self):
+</span><span style="color: #008080;"> 3</span>         self.file_name = <span style="color: #800000;">"</span><span style="color: #800000;">user_info</span><span style="color: #800000;">"</span>
+<span style="color: #008080;"> 4</span>         self.user_info =<span style="color: #000000;"> dict(
+</span><span style="color: #008080;"> 5</span>             [(line.strip().split(<span style="color: #800000;">"</span><span style="color: #800000;">,</span><span style="color: #800000;">"</span>)[0].lower(), line.strip().split(<span style="color: #800000;">"</span><span style="color: #800000;">,</span><span style="color: #800000;">"</span>)[1]) <span style="color: #0000ff;">for</span> line <span style="color: #0000ff;">in</span> open(self.file_name, <span style="color: #800000;">"</span><span style="color: #800000;">rb</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;"> 6</span>              <span style="color: #0000ff;">if</span><span style="color: #000000;"> line])
+</span><span style="color: #008080;"> 7</span> 
+<span style="color: #008080;"> 8</span>     <span style="color: #0000ff;">def</span><span style="color: #000000;"> login(self):
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(3<span style="color: #000000;">):
+</span><span style="color: #008080;">10</span>             user_name = raw_input(<span style="color: #800000;">'</span><span style="color: #800000;">username:</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #008080;">11</span>             pwd = raw_input(<span style="color: #800000;">'</span><span style="color: #800000;">passwd:</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #008080;">12</span>             cpwd = raw_input(<span style="color: #800000;">'</span><span style="color: #800000;">cpasswd:</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #008080;">13</span> 
+<span style="color: #008080;">14</span>             <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">not</span> user_name <span style="color: #0000ff;">or</span> <span style="color: #0000ff;">not</span> pwd <span style="color: #0000ff;">or</span> <span style="color: #0000ff;">not</span><span style="color: #000000;"> cpwd:
+</span><span style="color: #008080;">15</span>                 <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">账号、密码和确认密码都不能为空!</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">16</span>                 <span style="color: #0000ff;">continue</span>
+<span style="color: #008080;">17</span>             <span style="color: #0000ff;">if</span> str(user_name).lower() <span style="color: #0000ff;">in</span><span style="color: #000000;"> self.user_info:
+</span><span style="color: #008080;">18</span>                 <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">用户名已存在！</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">19</span>                 <span style="color: #0000ff;">continue</span>
+<span style="color: #008080;">20</span>             <span style="color: #0000ff;">if</span> pwd !=<span style="color: #000000;"> cpwd:
+</span><span style="color: #008080;">21</span>                 <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">两次密码输入不一致！</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">22</span>                 <span style="color: #0000ff;">continue</span>
+<span style="color: #008080;">23</span>             <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">not</span> (len(user_name) &gt; 6 <span style="color: #0000ff;">and</span> len(user_name) &lt; 12) <span style="color: #0000ff;">or</span> <span style="color: #0000ff;">not</span> (len(pwd) &gt; 6 <span style="color: #0000ff;">and</span> len(pwd) &lt; 12<span style="color: #000000;">):
+</span><span style="color: #008080;">24</span>                 <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">账号和密码长度要大于等于6，小于等于12</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">25</span>                 <span style="color: #0000ff;">continue</span>
+<span style="color: #008080;">26</span> 
+<span style="color: #008080;">27</span>             self.user_info[user_name] =<span style="color: #000000;"> pwd
+</span><span style="color: #008080;">28</span>             <span style="color: #0000ff;">break</span>
+<span style="color: #008080;">29</span> <span style="color: #000000;">        self.save()
+</span><span style="color: #008080;">30</span> 
+<span style="color: #008080;">31</span>     <span style="color: #0000ff;">def</span><span style="color: #000000;"> save(self):
+</span><span style="color: #008080;">32</span>         fw = open(self.file_name, <span style="color: #800000;">"</span><span style="color: #800000;">wb</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">33</span>         <span style="color: #0000ff;">for</span> user_name, pwd <span style="color: #0000ff;">in</span><span style="color: #000000;"> self.user_info.items():
+</span><span style="color: #008080;">34</span>             fw.write(<span style="color: #800000;">"</span><span style="color: #800000;">{user_name},{pwd}\n</span><span style="color: #800000;">"</span>.format(user_name=user_name.lower(), pwd=<span style="color: #000000;">pwd))
+</span><span style="color: #008080;">35</span> <span style="color: #000000;">        fw.close()
+</span><span style="color: #008080;">36</span> 
+<span style="color: #008080;">37</span> 
+<span style="color: #008080;">38</span> userLogin =<span style="color: #000000;"> UserLogin()
+</span><span style="color: #008080;">39</span> userLogin.login()</pre>
+</div>
+<p> </p>
+</div></div>

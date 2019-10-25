@@ -1,0 +1,116 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11020118.html" id="cb_post_title_url">python_时间戳处理</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">def</span><span style="color: #000000;"> is_weekend(date):
+    </span><span style="color: #0000ff;">return</span> date.strftime(<span style="color: #800000;">"</span><span style="color: #800000;">%w</span><span style="color: #800000;">"</span>) == <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span> <span style="color: #0000ff;">or</span> date.strftime(<span style="color: #800000;">"</span><span style="color: #800000;">%w</span><span style="color: #800000;">"</span>) == <span style="color: #800000;">"</span><span style="color: #800000;">6</span><span style="color: #800000;">"</span>
+
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> getDays(num, weekend):
+    days </span>=<span style="color: #000000;"> []
+    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(1, num * 7<span style="color: #000000;">):
+        day </span>= datetime.datetime.now() + datetime.timedelta(days=-<span style="color: #000000;">i)
+        </span><span style="color: #0000ff;">if</span> is_weekend(day) <span style="color: #0000ff;">and</span><span style="color: #000000;"> weekend:
+            days.append(day.strftime(</span><span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d</span><span style="color: #800000;">'</span><span style="color: #000000;">))
+        </span><span style="color: #0000ff;">elif</span> <span style="color: #0000ff;">not</span> is_weekend(day) <span style="color: #0000ff;">and</span> <span style="color: #0000ff;">not</span><span style="color: #000000;"> weekend:
+            days.append(day.strftime(</span><span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d</span><span style="color: #800000;">'</span><span style="color: #000000;">))
+        </span><span style="color: #0000ff;">if</span> len(days) &gt;=<span style="color: #000000;"> num:
+            </span><span style="color: #0000ff;">break</span>
+    <span style="color: #0000ff;">return</span><span style="color: #000000;"> days
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_ts(num):
+    </span><span style="color: #0000ff;">return</span> int(time.mktime(datetime.date.today().timetuple()) - num * 60 * 60 * 24) * 1000
+
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> get_ds(num):
+    </span><span style="color: #0000ff;">return</span> (datetime.datetime.now() + datetime.timedelta(days=-num)).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span> get_ds_hour(days=0, hours=<span style="color: #000000;">0):
+    </span><span style="color: #0000ff;">return</span> (datetime.datetime.now() + datetime.timedelta(days=-days, hours=hours)).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d%H</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span> get_date(num, format=<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">):
+    </span><span style="color: #0000ff;">return</span> (datetime.datetime.now() + datetime.timedelta(days=-<span style="color: #000000;">num)).strftime(format)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_month_first(num):
+    date </span>= (datetime.date.today() - relativedelta(months=<span style="color: #000000;">num))
+    </span><span style="color: #0000ff;">return</span> datetime.date(date.year, date.month, 1<span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_month_first_date(num):
+    </span><span style="color: #0000ff;">return</span> get_month_first(num).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_month_first_ds(num):
+    </span><span style="color: #0000ff;">return</span> get_month_first(num).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_month_first_ts(num):
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> date2ts(get_month_first(num))
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_month(num):
+    </span><span style="color: #0000ff;">return</span> get_month_first(num).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y%m</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_week_first(num):
+    now </span>=<span style="color: #000000;"> datetime.date.today()
+    </span><span style="color: #0000ff;">return</span> now - datetime.timedelta(days=now.weekday()) - relativedelta(weeks=<span style="color: #000000;">num)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_week_last(num):
+    now </span>=<span style="color: #000000;"> datetime.date.today()
+    </span><span style="color: #0000ff;">return</span> now + datetime.timedelta(days=6 - now.weekday()) - relativedelta(weeks=<span style="color: #000000;">num)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_week_first_date(num):
+    </span><span style="color: #0000ff;">return</span> get_week_first(num).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_week_first_ds(num):
+    </span><span style="color: #0000ff;">return</span> get_week_first(num).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_week_first_ts(num):
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> date2ts(get_week_first(num))
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> get_week_last_ds(num):
+    </span><span style="color: #0000ff;">return</span> get_week_last(num).strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y%m%d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">def</span> ts2date(ts, format=<span style="color: #800000;">"</span><span style="color: #800000;">%Y-%m-%d %H:%M:%S</span><span style="color: #800000;">"</span><span style="color: #000000;">):
+    </span><span style="color: #0000ff;">return</span> time.strftime(format, time.localtime(ts / 1000<span style="color: #000000;">))
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> date2ts(date):
+    </span><span style="color: #0000ff;">return</span> int(time.mktime(date.timetuple())) * 1000</pre>
+</div>
+<p> </p>
+</div></div>

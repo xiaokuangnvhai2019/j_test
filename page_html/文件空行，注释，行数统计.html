@@ -1,0 +1,140 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11165714.html" id="cb_post_title_url">文件空行，注释，行数统计</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<pre># 不知不觉你已经写了很多python代码了，代码全部都放在e盘下面的my_code文件夹中，突然突发奇想，想统计了一下总共写了多少行代码，包括空行和注释，要把代码的行数、空行数、注释行数都统计出来<br/># 1、找到e盘下的所有py文件<br/># 2、每个文件进行遍历，找总行数，空行数，注释行数都统计<br/># 空行就是\n<br/># 注释行 三点开头，三点结尾   #号开头且都是首<br/><br/>1、每个统计数单写方法</pre>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> os
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">统计多行注释的注释行数</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> note_three(f):
+    t </span>= False <span style="color: #008000;">#</span><span style="color: #008000;">开关关闭状态</span>
+    count = 0 <span style="color: #008000;">#</span><span style="color: #008000;">总数初始为0</span>
+    <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> f:
+
+        </span><span style="color: #0000ff;">if</span> i.strip().startswith(<span style="color: #800000;">"</span><span style="color: #800000;">'''</span><span style="color: #800000;">"</span>):  <span style="color: #008000;">#</span><span style="color: #008000;">当行是'''开头的，开始记行数</span>
+            t = <span style="color: #0000ff;">not</span> t <span style="color: #008000;">#</span><span style="color: #008000;">开关打开</span>
+            count += 1 <span style="color: #008000;">#</span><span style="color: #008000;">开头行和结尾行的计数</span>
+            <span style="color: #0000ff;">continue</span>
+
+        <span style="color: #0000ff;">if</span> t ==<span style="color: #000000;"> True:
+            count </span>+= 1 <span style="color: #008000;">#</span><span style="color: #008000;">注释中间的行计数</span>
+    f.seek(0) <span style="color: #008000;">#</span><span style="color: #008000;">文件索引归初始位置</span>
+
+    <span style="color: #0000ff;">return</span> count <span style="color: #008000;">#</span><span style="color: #008000;">返回多行注释的行数</span>
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> note_one(f):
+    count</span>=0 <span style="color: #008000;">#</span><span style="color: #008000;">#号注释统计初始值</span>
+    <span style="color: #0000ff;">for</span> line <span style="color: #0000ff;">in</span><span style="color: #000000;"> f:
+        </span><span style="color: #0000ff;">if</span> line.strip().startswith(<span style="color: #800000;">'</span><span style="color: #800000;">#</span><span style="color: #800000;">'</span>): <span style="color: #008000;">#</span><span style="color: #008000;">统计所有以#号开头的行</span>
+            count+=1 <span style="color: #008000;">#</span><span style="color: #008000;">每次加1</span>
+    f.seek(0) <span style="color: #008000;">#</span><span style="color: #008000;">文件索引归初始位置</span>
+    <span style="color: #0000ff;">return</span>  count <span style="color: #008000;">#</span><span style="color: #008000;">返回单行注释的行数</span>
+
+
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> null_num(f):
+    count</span>=0 <span style="color: #008000;">#</span><span style="color: #008000;">空行统计初始值</span>
+    <span style="color: #0000ff;">for</span> line <span style="color: #0000ff;">in</span><span style="color: #000000;"> f :
+        </span><span style="color: #0000ff;">if</span> <span style="color: #0000ff;">not</span> line.strip(): <span style="color: #008000;">#</span><span style="color: #008000;">如果空行，统计数加1</span>
+            count+=1<span style="color: #000000;">
+    f.seek(0) </span><span style="color: #008000;">#</span><span style="color: #008000;">文件索引归初始位置</span>
+    <span style="color: #0000ff;">return</span> count <span style="color: #008000;">#</span><span style="color: #008000;">返回空行行数</span>
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> row_num(f):
+    count</span>=0 <span style="color: #008000;">#</span><span style="color: #008000;">文件行数统计初始值</span>
+    <span style="color: #0000ff;">for</span> line <span style="color: #0000ff;">in</span><span style="color: #000000;"> f :
+        count</span>+=1 <span style="color: #008000;">#</span><span style="color: #008000;">每变量一行，文件总行数加1</span>
+    f.seek(0) <span style="color: #008000;">#</span><span style="color: #008000;">文件索引归初始位置</span>
+    <span style="color: #0000ff;">return</span>  count <span style="color: #008000;">#</span><span style="color: #008000;">返回文件总行数</span>
+<span style="color: #000000;">
+
+
+path</span>=<span style="color: #800000;">'</span><span style="color: #800000;">.</span><span style="color: #800000;">'</span> <span style="color: #008000;">#</span><span style="color: #008000;">文件路径</span>
+files = os.listdir(path) <span style="color: #008000;">#</span><span style="color: #008000;">获取路径下文件list</span>
+count_dic = {} <span style="color: #008000;">#</span><span style="color: #008000;">结果存放处</span>
+<span style="color: #0000ff;">for</span> name <span style="color: #0000ff;">in</span> files: <span style="color: #008000;">#</span><span style="color: #008000;">变量文件</span>
+    <span style="color: #0000ff;">if</span> name.endswith(<span style="color: #800000;">'</span><span style="color: #800000;">.py</span><span style="color: #800000;">'</span>): <span style="color: #008000;">#</span><span style="color: #008000;">文件以.py结尾，开始统计文件行数，空行，注释</span>
+        file = open(name, encoding=<span style="color: #800000;">'</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">打开文件</span>
+        j_count=note_one(file)+note_three(file) <span style="color: #008000;">#</span><span style="color: #008000;">注释总数</span>
+        count=row_num(file) <span style="color: #008000;">#</span><span style="color: #008000;">行总数</span>
+        i_count=null_num(file) <span style="color: #008000;">#</span><span style="color: #008000;">空行总数</span>
+        count_dic[name]={<span style="color: #800000;">'</span><span style="color: #800000;">行数</span><span style="color: #800000;">'</span>: count, <span style="color: #800000;">'</span><span style="color: #800000;">空行</span><span style="color: #800000;">'</span>: i_count, <span style="color: #800000;">'</span><span style="color: #800000;">注释</span><span style="color: #800000;">'</span>: j_count} <span style="color: #008000;">#</span><span style="color: #008000;">循环放入字典每个文件的各项信息</span>
+<span style="color: #0000ff;">print</span>(count_dic) <span style="color: #008000;">#</span><span style="color: #008000;">打印结果</span></pre>
+</div>
+<p> 2、减少遍历文件的次数</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;"> 不知不觉你已经写了很多python代码了，代码全部都放在e盘下面的my_code文件夹中，突然突发奇想，想统计了一下总共写了多少行代码，包括空行和注释，要把代码的行数、空行数、注释行数都统计出来</span><span style="color: #008000;">
+#</span><span style="color: #008000;"> 1、找到e盘下的所有py文件</span><span style="color: #008000;">
+#</span><span style="color: #008000;"> 2、每个文件进行遍历，找总行数，空行数，注释行数都统计</span><span style="color: #008000;">
+#</span><span style="color: #008000;"> 空行就是\n</span><span style="color: #008000;">
+#</span><span style="color: #008000;"> 注释行 三点开头，三点结尾   #号开头且都是首</span>
+
+<span style="color: #0000ff;">import</span><span style="color: #000000;"> os
+
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">统计多行注释的注释行数</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> note_three(f):
+    t </span>= False <span style="color: #008000;">#</span><span style="color: #008000;">开关关闭状态</span>
+    count = 0 <span style="color: #008000;">#</span><span style="color: #008000;">总数初始为0</span>
+    <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> f:
+
+        </span><span style="color: #0000ff;">if</span> i.strip().startswith(<span style="color: #800000;">"</span><span style="color: #800000;">'''</span><span style="color: #800000;">"</span>):  <span style="color: #008000;">#</span><span style="color: #008000;">当行是'''开头的，开始记行数</span>
+            t = <span style="color: #0000ff;">not</span> t <span style="color: #008000;">#</span><span style="color: #008000;">开关打开</span>
+            count += 1 <span style="color: #008000;">#</span><span style="color: #008000;">开头行和结尾行的计数</span>
+            <span style="color: #0000ff;">continue</span>
+
+        <span style="color: #0000ff;">if</span> t ==<span style="color: #000000;"> True:
+            count </span>+= 1 <span style="color: #008000;">#</span><span style="color: #008000;">注释中间的行计数</span>
+    f.seek(0) <span style="color: #008000;">#</span><span style="color: #008000;">文件索引归初始位置</span>
+
+    <span style="color: #0000ff;">return</span> count <span style="color: #008000;">#</span><span style="color: #008000;">返回多行注释的行数</span>
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> count_file(f):
+    row_num</span>=0 <span style="color: #008000;">#</span><span style="color: #008000;">总行数</span>
+    note_one=0 <span style="color: #008000;">#</span><span style="color: #008000;">单行注释行数</span>
+    null_num=0 <span style="color: #008000;">#</span><span style="color: #008000;">空行数</span>
+    <span style="color: #0000ff;">for</span> index,line <span style="color: #0000ff;">in</span> enumerate(f): <span style="color: #008000;">#</span><span style="color: #008000;">遍历文件行内容，和行号</span>
+        row_num += 1 <span style="color: #008000;">#</span><span style="color: #008000;">每遍历一行加1</span>
+        <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">not</span> line.strip(): <span style="color: #008000;">#</span><span style="color: #008000;">遇到空行加1</span>
+            null_num += 1
+        <span style="color: #0000ff;">elif</span> line.strip().startswith(<span style="color: #800000;">'</span><span style="color: #800000;">#</span><span style="color: #800000;">'</span>):<span style="color: #008000;">#</span><span style="color: #008000;">每遇到#号开头单行注释加1</span>
+            note_one += 1<span style="color: #000000;">
+    f.seek(0) </span><span style="color: #008000;">#</span><span style="color: #008000;">文件索引归0</span>
+    <span style="color: #0000ff;">return</span> row_num,null_num,note_one <span style="color: #008000;">#</span><span style="color: #008000;">返回总行数，空行总数，单行注释总数</span>
+<span style="color: #000000;">
+path</span>=<span style="color: #800000;">'</span><span style="color: #800000;">.</span><span style="color: #800000;">'</span> <span style="color: #008000;">#</span><span style="color: #008000;">文件路径</span>
+files = os.listdir(path) <span style="color: #008000;">#</span><span style="color: #008000;">获取路径下文件list</span>
+count_dic = {} <span style="color: #008000;">#</span><span style="color: #008000;">结果存放处</span>
+<span style="color: #0000ff;">for</span> name <span style="color: #0000ff;">in</span> files: <span style="color: #008000;">#</span><span style="color: #008000;">变量文件</span>
+    <span style="color: #0000ff;">if</span> name.endswith(<span style="color: #800000;">'</span><span style="color: #800000;">.py</span><span style="color: #800000;">'</span>): <span style="color: #008000;">#</span><span style="color: #008000;">文件以.py结尾，开始统计文件行数，空行，注释</span>
+        file = open(name, encoding=<span style="color: #800000;">'</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">打开文件</span>
+        row_num,null_num,note_one=count_file(file) <span style="color: #008000;">#</span><span style="color: #008000;">获取总行数，空行总数，单行注释总数</span>
+        note_num=note_one+note_three(file) <span style="color: #008000;">#</span><span style="color: #008000;">注释总数</span>
+        count_dic[name]={<span style="color: #800000;">'</span><span style="color: #800000;">行数</span><span style="color: #800000;">'</span>: row_num, <span style="color: #800000;">'</span><span style="color: #800000;">空行</span><span style="color: #800000;">'</span>: null_num, <span style="color: #800000;">'</span><span style="color: #800000;">注释</span><span style="color: #800000;">'</span>: note_num} <span style="color: #008000;">#</span><span style="color: #008000;">循环放入字典每个文件的各项信息</span>
+<span style="color: #0000ff;">print</span>(count_dic) <span style="color: #008000;">#</span><span style="color: #008000;">打印结果</span></pre>
+</div>
+<p> </p>
+</div></div>

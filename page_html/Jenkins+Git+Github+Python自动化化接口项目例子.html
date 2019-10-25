@@ -1,0 +1,100 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11343133.html" id="cb_post_title_url">Jenkins+Git+Github+Python自动化化接口项目例子</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>环境：Linux服务器一台</p>
+<p>一、安装Jenkins</p>
+<p>参考博客：https://www.cnblogs.com/xiaokuangnvhai/p/11343003.html</p>
+<p><span style=";font-family: 宋体; font-size: 14px;"><span style="font-family: 宋体;">安装插件：Publish Over SSH</span></span></p>
+<p> </p>
+<p>二、安装Python环境</p>
+<p>参考博客：https://www.cnblogs.com/xiaokuangnvhai/p/11353014.html</p>
+<p> </p>
+<p>三、申请Github账号</p>
+<p>进入该链接进行注册：<a href="https://github.com/">https://github.com/</a></p>
+<p> </p>
+<p>四、安装git</p>
+<p><span style="font-size: 14px;"><span style="font-family: 宋体; color: #333333; letter-spacing: 0px;">安装命令：</span><strong><span style="font-family: 宋体; color: #333333; letter-spacing: 0px;">yum install git -y</span></strong></span></p>
+<p> </p>
+<div class="cnblogs_code">
+<pre>$ git config --<span style="color: #0000ff;">global</span> user.name <span style="color: #800000;">"</span><span style="color: #800000;">Your Name</span><span style="color: #800000;">"</span><span style="color: #000000;">
+$ git config </span>--<span style="color: #0000ff;">global</span> user.email <span style="color: #800000;">"</span><span style="color: #800000;">email@example.com</span><span style="color: #800000;">"</span></pre>
+</div>
+<p> </p>
+<p>五、生成公钥和秘钥</p>
+<div class="cnblogs_code">
+<pre>cd /root/<span style="color: #000000;">.ssh
+
+ssh</span>-keygen -t rsa -C <span style="color: #800000;">"</span><span style="color: #800000;">mghxy123@163.com</span><span style="color: #800000;">"</span> <span style="color: #008000;">#</span><span style="color: #008000;">邮箱是Git用户邮箱</span>
+<span style="color: #000000;">
+备注：一路回车即可，无需输入密码
+
+
+路径下生成2个文件：id_rsa 和 id_rsa.pub
+
+id_rsa   秘钥
+
+id_rsa.pub 公钥</span></pre>
+</div>
+<p>六、配置Jenkins</p>
+<p>1、新建一个自由风格的任务，输入任务名称，确定</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814172209720-1709929070.png"/></p>
+<p> </p>
+<p> 2、配置任务参数</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814173550435-1138428067.png"/></p>
+<p> </p>
+<p>地址可以去GitHub上复制，如下图：</p>
+<p> </p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814173747375-1967483362.png"/></p>
+<p> </p>
+<p> </p>
+<p>凭证部分需要Jenkins和github均配置</p>
+<p>Jenkins配置如下：</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814175234997-1059118963.png"/></p>
+<p> </p>
+<p> </p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814175124502-1219956429.png"/></p>
+<p> </p>
+<p>github凭证ssh设置</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814174022731-741031791.png"/></p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p>3、定时构建配置</p>
+<p>书写格式： * * * * *</p>
+<p>第一个*表示分，第二个*表示小时，第三个*表示天，第四个*表示月，第五个*表示周几</p>
+<p> </p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814175749218-25624646.png"/></p>
+<p> </p>
+<p> 4、执行配置</p>
+<p>默认的工作目录，就是Jenkins的工作目录，可以写你要执行的项目start.py文件，可以通过cd等命令，具体看自己需要啊</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814180400600-38915191.png"/></p>
+<p>七、构建</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814180822155-369910400.png"/></p>
+<p>八、日志查看</p>
+<p>构建中的控制台输出，可查看构建的日志，如下图</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201908/783015-20190814181003089-1310810526.png"/></p>
+<p> </p>
+</div></div>

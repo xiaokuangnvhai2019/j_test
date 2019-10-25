@@ -1,0 +1,51 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11465194.html" id="cb_post_title_url">python_统计字符串个数</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">#取出字符串中出现2次的字符串，使用count方法统计<br/>def</span><span style="color: #000000;"> two_zifuchuan(str):
+    s</span>=<span style="color: #000000;">set()
+    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> str:
+        </span><span style="color: #0000ff;">if</span> str.count(i)==2<span style="color: #000000;">:
+            s.add(i)
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> s
+
+#<span style="color: #0000ff;">取出字符串中出现2次的字符串，使用字典统计</span>
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> two_occur(str):
+    s</span>=<span style="color: #000000;">{}
+    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> str:
+        </span><span style="color: #0000ff;">if</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> s.keys():
+            s[i]</span>+=1
+        <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+            s[i]</span>=1
+    <span style="color: #0000ff;">return</span> [i <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> s <span style="color: #0000ff;">if</span> s[i]==2<span style="color: #000000;">]
+
+str</span>=<span style="color: #800000;">"</span><span style="color: #800000;">dddredddddewws22dff43</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">print</span><span style="color: #000000;">(two_zifuchuan(str))
+</span><span style="color: #0000ff;">print</span>(two_occur(str))<br/><br/>#统计数组中每个值的个数并打印且不能用count和字典，且时间换空间</pre>
+<pre>li<span style="color: #a71d5d;">=<span style="color: #63a35c;">[<span style="color: #0086b3;">1<span style="color: #63a35c;">,<span style="color: #0086b3;">2<span style="color: #63a35c;">,<span style="color: #0086b3;">3<span style="color: #63a35c;">,<span style="color: #0086b3;">4<span style="color: #63a35c;">,<span style="color: #0086b3;">5<span style="color: #63a35c;">,<span style="color: #0086b3;">5<span style="color: #63a35c;">,<span style="color: #0086b3;">5<span style="color: #63a35c;">,<span style="color: #0086b3;">1<span style="color: #63a35c;">,<span style="color: #0086b3;">3<span style="color: #63a35c;">,<span style="color: #0086b3;">2<span style="color: #63a35c;">,<span style="color: #0086b3;">1<span style="color: #63a35c;">] <span style="color: #969896;">#数组<br/>x<span style="color: #a71d5d;">=<span style="color: #0086b3;">0<br/>last<span style="color: #a71d5d;">=<span style="color: #0086b3;">sorted<span style="color: #63a35c;">(li<span style="color: #63a35c;">)[<span style="color: #0086b3;">0<span style="color: #63a35c;">] <span style="color: #969896;">#排序后第一个值<br/><span style="color: #a71d5d;">for i<span style="color: #63a35c;">,j <span style="color: #a71d5d;">in <span style="color: #0086b3;">enumerate<span style="color: #63a35c;">(<span style="color: #0086b3;">sorted<span style="color: #63a35c;">(li<span style="color: #63a35c;">))<span style="color: #a71d5d;">: <span style="color: #969896;">#遍历排序数组<br/><span style="color: #969896;">    <span style="color: #a71d5d;">if j<span style="color: #a71d5d;">==last<span style="color: #a71d5d;">: <span style="color: #969896;">#假如当前遍历数组值和上一个值一样<br/><span style="color: #969896;">        x<span style="color: #a71d5d;">+=<span style="color: #0086b3;">1 <span style="color: #969896;">#个数加1<br/><span style="color: #969896;">    <span style="color: #a71d5d;">else:<br/><span style="color: #a71d5d;">        <span style="color: #0086b3;">print<span style="color: #63a35c;">(<span style="color: #008080; font-weight: bold;">"%s的次数是：%s" <span style="color: #a71d5d;">% <span style="color: #63a35c;">(last<span style="color: #63a35c;">,x<span style="color: #63a35c;">)) <span style="color: #969896;">#当前遍历数组和上一个值不同，输出值及个数<br/><span style="color: #969896;">        x<span style="color: #a71d5d;">=<span style="color: #0086b3;">1 <span style="color: #969896;">#个数归1<br/><span style="color: #969896;">        last<span style="color: #a71d5d;">=j <span style="color: #969896;">#当前值遍历给last<br/><span style="color: #969896;"><br/><span style="color: #0086b3;">print<span style="color: #63a35c;">(<span style="color: #008080; font-weight: bold;">"%s的次数是：%s" <span style="color: #a71d5d;">% <span style="color: #63a35c;">(last<span style="color: #63a35c;">, x<span style="color: #63a35c;">))<span style="color: #969896;">#输出数组最后一个值的个数<br/><br/></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p> </p>
+</div></div>

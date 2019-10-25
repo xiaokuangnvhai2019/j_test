@@ -1,0 +1,75 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11649631.html" id="cb_post_title_url">Nginx 反向代理设置</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<h2>一、设置反向代理例子一</h2>
+<p>需求：电脑访问www.123.com,显示对应服务器Tomcat首页</p>
+<h3>1、在Windows系统的host文件进行域名配置</h3>
+<p>host文件加  192.168.198.128  www.123.com</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017162706467-619461506.png"/></p>
+<p> </p>
+<h3>2、修改nginx 配置文件</h3>
+<p>备注：由于我这里80端口占用，所以用的90</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191017163010912-1964689371.png"/></p>
+<h3> 3、客户端访问www.123.com,页面跳转到Tomcat首页</h3>
+<p>备注：由于我这里使用的90端口，所以www.123.com后面要加90端口，如果是默认的80端口是不需带端口号的</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018100106354-120731308.png"/></p>
+<p> </p>
+<h2>二、反向代理例子二</h2>
+<p>需求：Nginx根据不同的路径跳转到不同的服务页面中去</p>
+<h3>1、准备工作</h3>
+<p>准备两个Tomcat，一个是8090端口，一个是8070端口</p>
+<p><span style="color: #ff0000;">修改端口文件server.xml，如下图：</span></p>
+<p> </p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018142906354-2056782198.png"/></p>
+<p> </p>
+<p> </p>
+<p><span style="color: #ff0000;">修改后通过IP：8090或IP：8070，做一下配置是否修改成功的验证，显示如下图，表明配置成功</span></p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018102721439-1337107145.png"/></p>
+<p> </p>
+<h3>2、 创建文件夹和测试页面</h3>
+<p><span style="color: #ff0000;">在Tomcat的webapps目录下建目录且放入测试页面，如下图：</span></p>
+<p> </p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018104101458-773252510.png"/></p>
+<p> </p>
+<p><span style="color: #ff0000;"> 验证是否可正常访问测试页面，如下图表示配置正确：</span></p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018104252017-1646601363.png"/></p>
+<p> </p>
+<p> </p>
+<h3>3、配置反向代理</h3>
+<p><span style="color: #ff0000;">配置nginx.conf文件，如下图：</span></p>
+<p> </p>
+<p> <img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018141243068-48929670.png"/></p>
+<p> </p>
+<p> </p>
+<h3>4、开发对外访问的端口号</h3>
+<p>firewall-cmd --add-port=90/tcp --permanent</p>
+<p> </p>
+<h3>5、重启（./nginx -s reload）Nginx，进行验证</h3>
+<p><span style="color: #ff0000;">访问IP：90/edu/a.html和访问IP：90/zwj/a.html，如下图</span></p>
+<p> <img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018141112859-1317519995.png"/></p>
+<p> <img alt="" src="https://img2018.cnblogs.com/blog/783015/201910/783015-20191018142826992-266474337.png"/></p>
+<p> </p>
+</div></div>

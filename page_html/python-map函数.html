@@ -1,0 +1,59 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11062011.html" id="cb_post_title_url">python-map函数</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>map函数特点：</p>
+<div>1、map是循环帮你调用函数的</div>
+<div>2、map会把函数每一次调用的返回值保存，最后返回，且返回类型是迭代器</div>
+<div> </div>
+<div>备注：迭代器用完一个就扔掉一个，直到全部用完，且需要一个list接一下，否则返回的是对象</div>
+<div>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">def</span><span style="color: #000000;"> choice(a):
+    </span><span style="color: #0000ff;">return</span>  a+1
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> choice2(a):
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;">  a
+
+
+</span><span style="color: #0000ff;">print</span>(list(map(choice,[1,2,3,4]))) <span style="color: #008000;">#</span><span style="color: #008000;">输出[2, 3, 4, 5]</span>
+<span style="color: #0000ff;">print</span>(tuple(map(choice,[1,23,4]))) <span style="color: #008000;">#</span><span style="color: #008000;">输出(2, 24, 5)</span>
+<span style="color: #0000ff;">print</span>(set(map(choice,{1,2,4}))) <span style="color: #008000;">#</span><span style="color: #008000;">输出{2, 3, 5}</span>
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">''</span>.join(map(choice2,[<span style="color: #800000;">'</span><span style="color: #800000;">1</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">2</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">4</span><span style="color: #800000;">'</span>]))) <span style="color: #008000;">#</span><span style="color: #008000;">输出字符串124，迭代器返回值转字符串需通过join对每次迭代返回的值进行连接</span>
+<span style="color: #000000;">
+
+x</span>=map(choice,(1,2,3,4<span style="color: #000000;">))
+</span><span style="color: #0000ff;">print</span>(list(x))  <span style="color: #008000;">#</span><span style="color: #008000;">输出[2, 3, 4, 5]</span>
+<span style="color: #0000ff;">print</span>(tuple(x)) <span style="color: #008000;">#</span><span style="color: #008000;">这个为空，因为迭代器每用一次就丢一次，第二次调用就是空</span>
+<span style="color: #000000;">
+
+l</span>=<span style="color: #000000;">[]
+</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> [1,2,3,4]:  <span style="color: #008000;">#</span><span style="color: #008000;">map相当于这段代码</span>
+<span style="color: #000000;">    l.append(choice(i))
+</span><span style="color: #0000ff;">print</span>(l)</pre>
+</div>
+<p> </p>
+</div>
+</div></div>

@@ -1,0 +1,70 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11164924.html" id="cb_post_title_url">python_面向对象</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>面向对象几个概念</p>
+<p style="margin-left: 30px;">类：相当与一个模型，类中会定义一些方法，变量共实现对象使用，比如要造月饼，其好比月饼的模具，模具又有好多总花样啊啥的</p>
+<p style="margin-left: 30px;">对象：根据模型造出来的东西，类可以实例化多多个对象，就像月饼的模具可以造千千万万个月饼一样</p>
+<p style="margin-left: 30px;">实例：就是对象</p>
+<p style="margin-left: 30px;">实例化：实例化就是实例的一个过程</p>
+<p> </p>
+<p>面向对象思想总结</p>
+<p>面向对象其实就是通过类，抽象出一些公用的类方法及变量或属性，然后通过实例化对象，拥有类的方法及属性，然后在其基础上进行丰富功能或者直接使用某些方法。</p>
+<p>这样就不需要每次写程序定义好多重复的方法，我们定义一次，然后通过实例不同的对象，然后让这些对象都拥有这些方法，我们只需通过该对象进行操作，无需面对每个方法。</p>
+<p>这大概就是面向对象，本人愚见，理解不透彻，瞎总结一番。请忽略，记录纯属愚蠢加强理解记忆，哈哈哈哈</p>
+<p> 1、类和实例化在同一个文件</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> Person(): <span style="color: #008000;">#</span><span style="color: #008000;">定义类</span>
+    <span style="color: #0000ff;">def</span><span style="color: #000000;"> run(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会跑</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> fly(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会飞</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> walk(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会走</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+zwj</span>=Person() <span style="color: #008000;">#</span><span style="color: #008000;">实例化对象</span>
+zwj.walk() <span style="color: #008000;">#</span><span style="color: #008000;">对象调用类方法</span>
+<span style="color: #000000;">zwj.fly()
+zwj.run()</span></pre>
+</div>
+<p>2、类和实例化不在一个文件中，需要导入类文件，然后实例化的时候加类文件名及类名进行实例化</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> Person(): <span style="color: #008000;">#</span><span style="color: #008000;">定义类</span>
+    <span style="color: #0000ff;">def</span><span style="color: #000000;"> run(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会跑</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> fly(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会飞</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> walk(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">我会走</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> dd
+zwj</span>=dd.Person() <span style="color: #008000;">#</span><span style="color: #008000;">实例化对象</span>
+zwj.walk() <span style="color: #008000;">#</span><span style="color: #008000;">对象调用类方法</span>
+<span style="color: #000000;">zwj.fly()
+zwj.run()</span></pre>
+</div>
+<p> </p>
+</div></div>

@@ -1,0 +1,100 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11120703.html" id="cb_post_title_url">python_flask模块</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">flask 轻量级的web开发框架</div>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">1、get请求且带参数</div>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> flask
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> json
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+
+server</span>=flask.Flask(<span style="color: #800080;">__name__</span>) <span style="color: #008000;">#</span><span style="color: #008000;">当前Python为一个服务</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">接口实现功能，查询app_user表内容</span>
+@server.route(<span style="color: #800000;">"</span><span style="color: #800000;">/get_data</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">get请求，且连接带参数</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> table_data():
+    table_name</span>=flask.request.args.get(<span style="color: #800000;">"</span><span style="color: #800000;">tablename</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">参数名称为tablename</span>
+    <span style="color: #0000ff;">if</span> table_name==<span style="color: #800000;">"</span><span style="color: #800000;">app_myuser</span><span style="color: #800000;">"</span><span style="color: #000000;">:
+        conn </span>= pymysql.connect(host=<span style="color: #800000;">'</span>IP<span style="color: #800000;">'</span>, user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>, password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>, db=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>, port=3306<span style="color: #000000;">,
+                               charset</span>=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span>, autocommit=True)  <span style="color: #008000;">#</span><span style="color: #008000;"> 建立数据库连接</span>
+        cur = conn.cursor()  <span style="color: #008000;">#</span><span style="color: #008000;"> 建立游标</span>
+        cur.execute(<span style="color: #800000;">'</span><span style="color: #800000;">select * from %s</span><span style="color: #800000;">'</span> %<span style="color: #000000;"> table_name)
+        data </span>= cur.fetchall() <span style="color: #008000;">#</span><span style="color: #008000;">返回值为表内容</span>
+    <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+        data</span>={<span style="color: #800000;">""</span>:-2,<span style="color: #800000;">"</span><span style="color: #800000;">msg</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">参数错误</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+
+    </span><span style="color: #0000ff;">return</span>  json.dumps(data,ensure_ascii=False) <span style="color: #008000;">#</span><span style="color: #008000;">返回JSON格式</span>
+<span style="color: #000000;">
+server.run(host</span>=<span style="color: #800000;">"</span><span style="color: #800000;">0.0.0.0</span><span style="color: #800000;">"</span>,port=8989,debug=True)<span style="color: #008000;">#</span><span style="color: #008000;">默认端口号5000 加上debug无需重启只有更新代码，就访问的最新代码</span></pre>
+</div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201907/783015-20190704105038959-692139725.png"/></p>
+<p>2、get请求无参数</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> flask
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> json
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+
+server</span>=flask.Flask(<span style="color: #800080;">__name__</span>) <span style="color: #008000;">#</span><span style="color: #008000;">当前Python为一个服务</span>
+<span style="color: #000000;">
+@server.route(</span><span style="color: #800000;">"</span><span style="color: #800000;">/</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">get请求，不带参数</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> table_data():
+    d </span>= {<span style="color: #800000;">'</span><span style="color: #800000;">code</span><span style="color: #800000;">'</span>: 0, <span style="color: #800000;">"</span><span style="color: #800000;">msg</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">login</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+    </span><span style="color: #0000ff;">return</span> json.dumps(d, ensure_ascii=<span style="color: #000000;">False)
+
+server.run(host</span>=<span style="color: #800000;">"</span><span style="color: #800000;">0.0.0.0</span><span style="color: #800000;">"</span>,port=8989,debug=True)<span style="color: #008000;">#</span><span style="color: #008000;">默认端口号5000 加上debug无需重启只有更新代码，就访问的最新代码</span></pre>
+</div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201907/783015-20190704105251427-877943455.png"/></p>
+<p> 3、POST请求</p>
+<p>post请求需要定义方式是POST，另外获取参数需要用flask.request.values.get（）方法，表示参数通过BODY体进行传参</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> flask
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> json
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+
+server</span>=flask.Flask(<span style="color: #800080;">__name__</span>) <span style="color: #008000;">#</span><span style="color: #008000;">当前Python为一个服务</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">接口实现功能，查询app_user表内容</span>
+@server.route(<span style="color: #800000;">"</span><span style="color: #800000;">/post_data</span><span style="color: #800000;">"</span>,methods=[<span style="color: #800000;">'</span><span style="color: #800000;">post</span><span style="color: #800000;">'</span>]) <span style="color: #008000;">#</span><span style="color: #008000;">post请求</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> post_data():
+    tablename</span>=flask.request.values.get(<span style="color: #800000;">"</span><span style="color: #800000;">tablename</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">post请求，参数在body中</span>
+    <span style="color: #0000ff;">if</span> tablename==<span style="color: #800000;">"</span><span style="color: #800000;">app_myuser</span><span style="color: #800000;">"</span><span style="color: #000000;">:
+        conn </span>= pymysql.connect(host=<span style="color: #800000;">'</span>ip<span style="color: #800000;">'</span>, user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>, password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>, db=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>, port=3306<span style="color: #000000;">,
+                               charset</span>=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span>, autocommit=True)  <span style="color: #008000;">#</span><span style="color: #008000;"> 建立数据库连接</span>
+        cur = conn.cursor()  <span style="color: #008000;">#</span><span style="color: #008000;"> 建立游标</span>
+        cur.execute(<span style="color: #800000;">'</span><span style="color: #800000;">select * from %s</span><span style="color: #800000;">'</span> %<span style="color: #000000;"> tablename)
+        data </span>= cur.fetchall() <span style="color: #008000;">#</span><span style="color: #008000;">返回值为表内容</span>
+    <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+        data</span>={<span style="color: #800000;">""</span>:-2,<span style="color: #800000;">"</span><span style="color: #800000;">msg</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">参数错误</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+
+    </span><span style="color: #0000ff;">return</span>  json.dumps(data,ensure_ascii=<span style="color: #000000;">False)
+
+server.run(host</span>=<span style="color: #800000;">"</span><span style="color: #800000;">0.0.0.0</span><span style="color: #800000;">"</span>,port=8989,debug=True)<span style="color: #008000;">#</span><span style="color: #008000;">默认端口号5000 加上debug无需重启只有更新代码，就访问的最新代码</span></pre>
+</div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201907/783015-20190704111143995-615550032.png"/></p>
+<p> </p>
+</div>
+</div></div>

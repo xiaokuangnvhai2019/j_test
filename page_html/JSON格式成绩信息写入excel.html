@@ -1,0 +1,99 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11177771.html" id="cb_post_title_url">JSON格式成绩信息写入excel</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p><br/>实现如下，其中，造数据函数就是为了造JSON格式文件写的</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> xlwt
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> json
+
+data_score</span>=<span style="color: #000000;">{
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">1</span><span style="color: #800000;">"</span>: [<span style="color: #800000;">"</span><span style="color: #800000;">小花</span><span style="color: #800000;">"</span>, 99, 100, 98.5<span style="color: #000000;">],
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">2</span><span style="color: #800000;">"</span>: [<span style="color: #800000;">"</span><span style="color: #800000;">小王</span><span style="color: #800000;">"</span>, 90, 30.5, 95<span style="color: #000000;">],
+    </span><span style="color: #800000;">"</span><span style="color: #800000;">3</span><span style="color: #800000;">"</span>: [<span style="color: #800000;">"</span><span style="color: #800000;">小明</span><span style="color: #800000;">"</span>, 67.5, 49.6, 88<span style="color: #000000;">]
+}
+</span><span style="color: #008000;">#</span><span style="color: #008000;">造数据,把数据源作为JSON格式存入文件</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> create_data(name,data_text):
+    file</span>=open_file(name,<span style="color: #800000;">'</span><span style="color: #800000;">w</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    json.dump(data_text, file, ensure_ascii</span>=False, indent=4) <span style="color: #008000;">#</span><span style="color: #008000;">自循环JSON格式写入文件</span>
+<span style="color: #000000;">    close_file(file)
+
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">打开文件</span>
+<span style="color: #0000ff;">def</span> open_file(filename,mode=<span style="color: #800000;">'</span><span style="color: #800000;">r</span><span style="color: #800000;">'</span><span style="color: #000000;">):
+    result</span>=open(filename,mode,encoding=<span style="color: #800000;">'</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+    </span><span style="color: #0000ff;">return</span>  result <span style="color: #008000;">#</span><span style="color: #008000;">返回文件对象</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">关闭文件</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> close_file(file):
+    file.close()
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">把表头写入Excel文件</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> write_table_head(sheet):
+    sheet.write(0,0,</span><span style="color: #800000;">"</span><span style="color: #800000;">学号</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">第一个参数是行，第二个参数是列，第三个参数是该单元格的内容</span>
+    sheet.write(0,1,<span style="color: #800000;">"</span><span style="color: #800000;">姓名</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    sheet.write(0,</span>2,<span style="color: #800000;">"</span><span style="color: #800000;">数学</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    sheet.write(0,</span>3,<span style="color: #800000;">"</span><span style="color: #800000;">语文</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    sheet.write(0,</span>4,<span style="color: #800000;">"</span><span style="color: #800000;">英语</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    sheet.write(0,</span>5,<span style="color: #800000;">"</span><span style="color: #800000;">总分</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    sheet.write(0,</span>6,<span style="color: #800000;">"</span><span style="color: #800000;">平均分</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">写表内容</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> write_table(sheet,data_list):
+    row</span>=1 <span style="color: #008000;">#</span><span style="color: #008000;">从第1行开始写</span>
+    <span style="color: #0000ff;">for</span> key,value <span style="color: #0000ff;">in</span> data_list.items(): <span style="color: #008000;">#</span><span style="color: #008000;">遍历多重字典的第一层</span>
+        col =<span style="color: #000000;"> 0
+        sheet.write(row,col,key)
+        col</span>+=1 <span style="color: #008000;">#</span><span style="color: #008000;">列加</span>
+        <span style="color: #0000ff;">for</span> value2 <span style="color: #0000ff;">in</span> value: <span style="color: #008000;">#</span><span style="color: #008000;">遍历字典第二层的LIST</span>
+<span style="color: #000000;">            sheet.write(row,col,value2)
+            col</span>+=1 <span style="color: #008000;">#</span><span style="color: #008000;">列加</span>
+        count=sum(value[1:]) <span style="color: #008000;">#</span><span style="color: #008000;">切片方式取3门成绩进行求和</span>
+        sheet.write(row,col,count)<span style="color: #008000;">#</span><span style="color: #008000;">写入总分</span>
+        sheet.write(row,col+1,<span style="color: #800000;">'</span><span style="color: #800000;">%.2f</span><span style="color: #800000;">'</span> %(count/3)) <span style="color: #008000;">#</span><span style="color: #008000;">写入平均值</span>
+        row+=1 <span style="color: #008000;">#</span><span style="color: #008000;">行加</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;">读取文件的JSON格式转换为dic格式</span>
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> json_dic(name):
+    context </span>=<span style="color: #000000;"> open_file(name)
+    data_list </span>=<span style="color: #000000;"> json.load(context)
+    close_file(context)
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> data_list
+
+name</span>=<span style="color: #800000;">'</span><span style="color: #800000;">c.txt</span><span style="color: #800000;">'</span><span style="color: #000000;">
+create_data(name,data_score) </span><span style="color: #008000;">#</span><span style="color: #008000;">造数据</span>
+book=xlwt.Workbook() <span style="color: #008000;">#</span><span style="color: #008000;">实例化一个对象</span>
+sheet = book.add_sheet(<span style="color: #800000;">"</span><span style="color: #800000;">成绩</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">为EXCLE加sheet且命名</span>
+write_table_head(sheet) <span style="color: #008000;">#</span><span style="color: #008000;">写表头</span>
+write_table(sheet,json_dic(name)) <span style="color: #008000;">#</span><span style="color: #008000;">写表内容</span>
+book.save(<span style="color: #800000;">"</span><span style="color: #800000;">score2.xls</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">保存文件</span></pre>
+</div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201907/783015-20190715124606186-2106955765.png"/></p>
+<p> </p>
+<p> </p>
+<pre></pre>
+<p> </p>
+<pre><span style="color: #a71d5d;"><span style="color: #a71d5d;"><span style="color: #a71d5d;"><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #a71d5d;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #660099;"><span style="color: #a71d5d;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #660099;"><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #660099;"><span style="color: #a71d5d;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #63a35c;"><span style="color: #a71d5d;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #660099;"><span style="color: #a71d5d;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #63a35c;"> </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</div></div>

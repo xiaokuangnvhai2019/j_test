@@ -1,0 +1,115 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11098354.html" id="cb_post_title_url">python_数据库连接之mysql</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>python远程连接数据库，需要安装对应得第三方模块，现以mysql为例，其他的同理</p>
+<p>1、安装第三方库 </p>
+<p>pip install pymysql</p>
+<p>2、数据库连接及关闭</p>
+<p>备注：数据库连接后不关闭，会导致大量占用数据库连接池不释放，导致其他数据库连接无法连接到数据库</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">host 数据库服务IP地址</span><span style="color: #008000;">
+#</span><span style="color: #008000;">user 数据库连接用户名</span><span style="color: #008000;">
+#</span><span style="color: #008000;">password 数据库连接密码</span><span style="color: #008000;">
+#</span><span style="color: #008000;">db 连接数据库名称</span><span style="color: #008000;">
+#</span><span style="color: #008000;">port 数据库服务端口号</span><span style="color: #008000;">
+#</span><span style="color: #008000;">charset 编码方式</span><span style="color: #008000;">
+#</span><span style="color: #008000;">autocommit 自动提交，sql执行后直接自动提交，无需再次手动进行执行</span>
+conn=pymysql.Connect(host=<span style="color: #800000;">'</span><span style="color: #800000;">host</span><span style="color: #800000;">'</span>,user=<span style="color: #800000;">'</span><span style="color: #800000;">user</span><span style="color: #800000;">'</span>,password=<span style="color: #800000;">'</span><span style="color: #800000;">password</span><span style="color: #800000;">'</span>,db=<span style="color: #800000;">'</span><span style="color: #800000;">db</span><span style="color: #800000;">'</span>, port=3306, charset=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+                           autocommit</span>=True) <span style="color: #008000;">#</span><span style="color: #008000;">数据库连接</span>
+cur=conn.cursor() <span style="color: #008000;">#</span><span style="color: #008000;">建立游标</span>
+cur.execute(<span style="color: #800000;">'</span><span style="color: #800000;">select * from table</span><span style="color: #800000;">'</span>)  <span style="color: #008000;">#</span><span style="color: #008000;">执行sql</span><span style="color: #008000;">
+#</span><span style="color: #008000;">conn.commit() #手动提交sql执行结果</span><span style="color: #008000;">
+#</span><span style="color: #008000;">cur.fetchone() #单条获取sql执行结果</span>
+cur.fetchall() <span style="color: #008000;">#</span><span style="color: #008000;">获取所有sql执行结果</span><span style="color: #008000;">
+#</span><span style="color: #008000;">cur.fetchmany(10) #获取指定的10条执行结果</span>
+cur.close() <span style="color: #008000;">#</span><span style="color: #008000;">关闭游标</span>
+conn.close() <span style="color: #008000;">#</span><span style="color: #008000;">关闭数据库</span></pre>
+</div>
+<p>3、插入</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+</span><span style="color: #008000;">#</span><span style="color: #008000;">建立连接</span>
+conn=pymysql.connect(host=<span style="color: #800000;">'</span>IP<span style="color: #800000;">'</span>,user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>,db=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,port=3306,charset=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span>,autocommit=<span style="color: #000000;">True)
+cur </span>=conn.cursor() <span style="color: #008000;">#</span><span style="color: #008000;">建立游标</span>
+sql=<span style="color: #800000;">"</span><span style="color: #800000;">insert into acc_info VALUES(7,'dd3',123,1);</span><span style="color: #800000;">"</span><span style="color: #000000;">
+cur.execute(sql)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(cur.fetchall())
+cur.close()
+conn.close()
+
+C:\Users\zhaow\AppData\Local\Programs\Python\Python37\python.exe D:</span>/study/python/test/<span style="color: #000000;">YY.PY.py
+()  </span><span style="color: #008000;">#</span><span style="color: #008000;">返回的空元组</span></pre>
+</div>
+<p>4、查询</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+</span><span style="color: #008000;">#</span><span style="color: #008000;">建立连接</span>
+conn=pymysql.connect(host=<span style="color: #800000;">'</span>IP<span style="color: #800000;">'</span>,user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>,db=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,port=3306,charset=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span>,autocommit=<span style="color: #000000;">True)
+cur </span>=conn.cursor() <span style="color: #008000;">#</span><span style="color: #008000;">建立游标</span>
+sql=<span style="color: #800000;">"</span><span style="color: #800000;">SELECT * from acc_info;</span><span style="color: #800000;">"</span><span style="color: #000000;">
+cur.execute(sql)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(cur.fetchall())
+cur.close()
+conn.close()
+
+C:\Users\zhaow\AppData\Local\Programs\Python\Python37\python.exe D:</span>/study/python/test/<span style="color: #000000;">YY.PY.py
+((</span>1, <span style="color: #800000;">'</span><span style="color: #800000;">55</span><span style="color: #800000;">'</span>, 0, 0), (3, <span style="color: #800000;">'</span><span style="color: #800000;">dd</span><span style="color: #800000;">'</span>, 0, 0), (4, <span style="color: #800000;">'</span><span style="color: #800000;">dd</span><span style="color: #800000;">'</span>, 0, 0), (5, <span style="color: #800000;">'</span><span style="color: #800000;">dd</span><span style="color: #800000;">'</span>, 0, 0), (6, <span style="color: #800000;">'</span><span style="color: #800000;">dd3</span><span style="color: #800000;">'</span>, 0, 0), (7, <span style="color: #800000;">'</span><span style="color: #800000;">dd3</span><span style="color: #800000;">'</span>, 123, 1))  <span style="color: #008000;">#</span><span style="color: #008000;">返回的元组</span></pre>
+</div>
+<p>5、修改</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+</span><span style="color: #008000;">#</span><span style="color: #008000;">建立连接</span>
+conn=pymysql.connect(host=<span style="color: #800000;">'IP</span><span style="color: #800000;">'</span>,user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>,db=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,port=3306,charset=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span>,autocommit=<span style="color: #000000;">True)
+cur </span>=conn.cursor() <span style="color: #008000;">#</span><span style="color: #008000;">建立游标</span>
+sql=<span style="color: #800000;">"</span><span style="color: #800000;">UPDATE acc_info set name='xiug' where id=5;</span><span style="color: #800000;">"</span><span style="color: #000000;">
+cur.execute(sql)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(cur.fetchall())
+cur.close()
+conn.close()
+
+C:\Users\zhaow\AppData\Local\Programs\Python\Python37\python.exe D:</span>/study/python/test/<span style="color: #000000;">YY.PY.py
+()  </span><span style="color: #008000;">#</span><span style="color: #008000;">返回空元组</span></pre>
+</div>
+<p>6、删除</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> pymysql
+</span><span style="color: #008000;">#</span><span style="color: #008000;">建立连接</span>
+conn=pymysql.connect(host=<span style="color: #800000;">'</span>IP<span style="color: #800000;">'</span>,user=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>,db=<span style="color: #800000;">'</span><span style="color: #800000;">jxz</span><span style="color: #800000;">'</span>,port=3306,charset=<span style="color: #800000;">'</span><span style="color: #800000;">utf8</span><span style="color: #800000;">'</span>,autocommit=<span style="color: #000000;">True)
+cur </span>=conn.cursor() <span style="color: #008000;">#</span><span style="color: #008000;">建立游标</span>
+sql=<span style="color: #800000;">"</span><span style="color: #800000;">DELETE from acc_info where id=3</span><span style="color: #800000;">"</span><span style="color: #000000;">
+cur.execute(sql)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(cur.fetchall())
+cur.close()
+conn.close()
+
+C:\Users\zhaow\AppData\Local\Programs\Python\Python37\python.exe D:</span>/study/python/test/<span style="color: #000000;">YY.PY.py
+()</span></pre>
+</div>
+<p>7、其他</p>
+<p> </p>
+</div></div>

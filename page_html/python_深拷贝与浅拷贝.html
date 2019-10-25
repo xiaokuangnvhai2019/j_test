@@ -1,0 +1,110 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/10996928.html" id="cb_post_title_url">python_深拷贝与浅拷贝</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>一、深拷贝和浅拷贝的区分</p>
+<p> </p>
+<p>深拷贝：A变量变化,B变量不受影响</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201906/783015-20190610113843958-4844942.png"/></p>
+<p> </p>
+<p> </p>
+<p>浅拷贝：A变量变化,B变量跟着改变</p>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201906/783015-20190610114116842-675978755.png"/></p>
+<p> </p>
+<p>常见的深拷贝和浅拷贝</p>
+<p>浅拷贝： 赋值 l=list1  ,l和list1指向的同一块内存，两者一起变化</p>
+<p>深拷贝：定义 l=[1,2,3]  切片赋值 l=list1[:]   深度复制 <span style="font-size: 12px;">l=copy.deepcopy(list1)</span></p>
+<p> </p>
+<p><span style="font-size: 12px;">程序举例：</span></p>
+<p><span style="font-size: 12px;">1、赋值</span></p>
+<p> </p>
+<div class="cnblogs_code">
+<pre>list1=[1,2,3,4] <span style="color: #008000;">#</span><span style="color: #008000;">定义</span>
+list2=list1 <span style="color: #008000;">#</span><span style="color: #008000;">直接赋值给list2，两者内存指向一个位置</span>
+<span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> list1:
+    </span><span style="color: #0000ff;">if</span> i%2:  <span style="color: #008000;">#</span><span style="color: #008000;">奇数移除</span>
+<span style="color: #000000;">        list1.remove(i)
+        
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list1) 
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list2)
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+[</span>2, 4<span style="color: #000000;">]
+[</span>2, 4]</pre>
+</div>
+<p> </p>
+<p>2、切片赋值</p>
+<div class="cnblogs_code">
+<pre>list1=[1,2,3,4] <span style="color: #008000;">#</span><span style="color: #008000;">定义</span>
+list2=list1[:] <span style="color: #008000;">#</span><span style="color: #008000;">切片赋值，两者指向不同内存地址</span>
+<span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> list1:
+    </span><span style="color: #0000ff;">if</span> i%2:  <span style="color: #008000;">#</span><span style="color: #008000;">奇数移除</span>
+<span style="color: #000000;">        list1.remove(i)
+
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list1)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list2)
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+[</span>2, 4<span style="color: #000000;">]
+[</span>1, 2, 3, 4]</pre>
+</div>
+<p>3、深度复制</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;">  copy
+list1</span>=[1,2,3,4] <span style="color: #008000;">#</span><span style="color: #008000;">定义</span>
+list2=copy.deepcopy(list1)<span style="color: #008000;">#</span><span style="color: #008000;">深度复制，两者指向不同内存地址</span>
+<span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> list1:
+    </span><span style="color: #0000ff;">if</span> i%2:  <span style="color: #008000;">#</span><span style="color: #008000;">奇数移除</span>
+<span style="color: #000000;">        list1.remove(i)
+
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list1)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list2)
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+[</span>2, 4<span style="color: #000000;">]
+[</span>1, 2, 3, 4]</pre>
+</div>
+<p>4、定义</p>
+<div class="cnblogs_code">
+<pre>list1=[1,2,3,4] <span style="color: #008000;">#</span><span style="color: #008000;">定义</span>
+list2=[1,2,3,4] <span style="color: #008000;">#</span><span style="color: #008000;">深度复制，两者指向不同内存地址</span>
+<span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> list1:
+    </span><span style="color: #0000ff;">if</span> i%2:  <span style="color: #008000;">#</span><span style="color: #008000;">奇数移除</span>
+<span style="color: #000000;">        list1.remove(i)
+
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list1)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(list2)
+
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+[</span>2, 4<span style="color: #000000;">]
+[</span>1, 2, 3, 4]</pre>
+</div>
+<p> </p>
+</div></div>

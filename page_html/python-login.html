@@ -1,0 +1,184 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/10898992.html" id="cb_post_title_url">python-login</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">'''</span><br/><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">写代码</span><br/><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">1、写一个登陆的程序，最多登陆失败3次</span><br/><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">2、账号和密码分别存到一个list里面</span><br/><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">3、要校验输入是否为空，不输入和输入空格都算空，失败次数也要加1</span><br/><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">4、要校验账号是否存在，不存在的要提示，失败次数也要加1</span><br/><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">5、登陆成功的话，提示欢迎xxx登陆，今天的日期是xxx</span></p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;">'''</span></p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;"><strong>#第一种账户和密码分布存到2个list中</strong></span></p>
+<p> </p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">import</span> time  <span style="color: #008000;">#</span><span style="color: #008000;">导入时间模块</span>
+<span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #008000;">#</span><span style="color: #008000;">存储账号和密码</span>
+<span style="color: #008080;"> 4</span> name=[<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao1</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao2</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao3</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+</span><span style="color: #008080;"> 5</span> passwd=[<span style="color: #800000;">'</span><span style="color: #800000;">1234</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">12345</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span> num =<span style="color: #000000;">0  
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span> <span style="color: #008000;">#</span><span style="color: #008000;">允许3次输入错误</span>
+<span style="color: #008080;">10</span> <span style="color: #0000ff;">while</span> num&lt;3<span style="color: #000000;">:
+</span><span style="color: #008080;">11</span>     <span style="color: #008000;">#</span><span style="color: #008000;">接收输入</span>
+<span style="color: #008080;">12</span>     loginname=input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入用户名：</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">13</span>     loginpw=input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入密码：</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span>     <span style="color: #008000;">#</span><span style="color: #008000;"> 空格和空的判断，strip去除空格，判断字符长度</span>
+<span style="color: #008080;">16</span>     <span style="color: #0000ff;">if</span> len(loginname.strip()) ==<span style="color: #000000;"> 0 :
+</span><span style="color: #008080;">17</span>         num += 1
+<span style="color: #008080;">18</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">用户名不能为空，登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;">num)
+</span><span style="color: #008080;">19</span> 
+<span style="color: #008080;">20</span>     <span style="color: #0000ff;">elif</span> len(loginname.strip()) != 0 <span style="color: #0000ff;">and</span> len(loginpw.strip())==<span style="color: #000000;">0:
+</span><span style="color: #008080;">21</span>         num += 1
+<span style="color: #008080;">22</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">密码不能为空，登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;"> num)
+</span><span style="color: #008080;">23</span> 
+<span style="color: #008080;">24</span> 
+<span style="color: #008080;">25</span>     <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+</span><span style="color: #008080;">26</span>         <span style="color: #008000;">#</span><span style="color: #008000;"> 遍历list，验证用户名和密码</span>
+<span style="color: #008080;">27</span>         <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(0,len(name)):
+</span><span style="color: #008080;">28</span>           
+<span style="color: #008080;">29</span>           <span style="color: #008000;">#</span><span style="color: #008000;">数组未遍历到最后一个元素</span>
+<span style="color: #008080;">30</span>           <span style="color: #0000ff;">if</span> i&lt;len(name)-1<span style="color: #000000;">:
+</span><span style="color: #008080;">31</span>               <span style="color: #008000;">#</span><span style="color: #008000;">用户名不匹配，继续遍历</span>
+<span style="color: #008080;">32</span>               <span style="color: #0000ff;">if</span> loginname!=<span style="color: #000000;"> name[i]:
+</span><span style="color: #008080;">33</span>                   <span style="color: #0000ff;">continue</span>
+<span style="color: #008080;">34</span>               <span style="color: #008000;">#</span><span style="color: #008000;">用户名正确，密码错误，登录失败</span>
+<span style="color: #008080;">35</span>               <span style="color: #0000ff;">elif</span>  loginname==name[i] <span style="color: #0000ff;">and</span> loginpw!=<span style="color: #000000;">passwd[i]:
+</span><span style="color: #008080;">36</span>                   num+=1
+<span style="color: #008080;">37</span>                   <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">密码错误，登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;">num)
+</span><span style="color: #008080;">38</span>                   <span style="color: #0000ff;">break</span>
+<span style="color: #008080;">39</span>               <span style="color: #008000;">#</span><span style="color: #008000;">用户名和密码均正确，跳出循环，不再遍历，登录成功</span>
+<span style="color: #008080;">40</span>               <span style="color: #0000ff;">elif</span> loginname==name[i] <span style="color: #0000ff;">and</span> loginpw==<span style="color: #000000;">passwd[i]:
+</span><span style="color: #008080;">41</span>                  num=4
+<span style="color: #008080;">42</span>                  <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">欢迎%s登陆，今天的日期是%s</span><span style="color: #800000;">"</span> %(loginname, time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">, time.localtime(time.time()))))
+</span><span style="color: #008080;">43</span>                  <span style="color: #0000ff;">break</span>
+<span style="color: #008080;">44</span> 
+<span style="color: #008080;">45</span>           <span style="color: #008000;">#</span><span style="color: #008000;">数组遍历到最后一个元素</span>
+<span style="color: #008080;">46</span>           <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+</span><span style="color: #008080;">47</span>               <span style="color: #008000;">#</span><span style="color: #008000;">用户名不匹配，登录失败</span>
+<span style="color: #008080;">48</span>               <span style="color: #0000ff;">if</span> loginname!=<span style="color: #000000;"> name[i]:
+</span><span style="color: #008080;">49</span>                   num+=1
+<span style="color: #008080;">50</span>                   <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">账号不存在，登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;">num)
+</span><span style="color: #008080;">51</span>               <span style="color: #008000;">#</span><span style="color: #008000;">用户名正确，密码错误，登录失败</span>
+<span style="color: #008080;">52</span>               <span style="color: #0000ff;">elif</span>  loginname==name[i] <span style="color: #0000ff;">and</span> loginpw!=<span style="color: #000000;">passwd[i]:
+</span><span style="color: #008080;">53</span>                   num+=1
+<span style="color: #008080;">54</span>                   <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">密码错误，登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;">num)
+</span><span style="color: #008080;">55</span>               <span style="color: #008000;">#</span><span style="color: #008000;">用户名和密码均正确，登录成功</span>
+<span style="color: #008080;">56</span>               <span style="color: #0000ff;">elif</span> loginname==name[i] <span style="color: #0000ff;">and</span> loginpw==<span style="color: #000000;">passwd[i]:
+</span><span style="color: #008080;">57</span>                   num=4
+<span style="color: #008080;">58</span>                   <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">欢迎%s登陆，今天的日期是%s</span><span style="color: #800000;">"</span> %(loginname, time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span>, time.localtime(time.time()))))</pre>
+</div>
+<p> </p>
+<p> </p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;"><strong>#第二种，账户和密码存储到一个list中</strong></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">import</span><span style="color: #000000;">  time
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #008000;">#</span><span style="color: #008000;">用户名及密码存储</span>
+<span style="color: #008080;"> 4</span> logininfo=[<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+</span><span style="color: #008080;"> 5</span> num =<span style="color: #000000;">0
+</span><span style="color: #008080;"> 6</span> <span style="color: #008000;">#</span><span style="color: #008000;">允许3次输入错误</span>
+<span style="color: #008080;"> 7</span> <span style="color: #0000ff;">while</span> num&lt;3<span style="color: #000000;">:
+</span><span style="color: #008080;"> 8</span>     loginname=input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入用户名：</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;"> 9</span>     loginpw=input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入密码：</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">10</span>     <span style="color: #008000;">#</span><span style="color: #008000;">空格和空的判断，strip去除空格，判断字符长度</span>
+<span style="color: #008080;">11</span>     <span style="color: #0000ff;">if</span> len(loginname.strip())==0  <span style="color: #0000ff;">or</span> len(loginpw.strip())==<span style="color: #000000;">0:
+</span><span style="color: #008080;">12</span>         num+=1
+<span style="color: #008080;">13</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">登录失败%s次</span><span style="color: #800000;">"</span>%<span style="color: #000000;">num)
+</span><span style="color: #008080;">14</span>     <span style="color: #008000;">#</span><span style="color: #008000;">密码或者用户名不正确</span>
+<span style="color: #008080;">15</span>     <span style="color: #0000ff;">elif</span> loginname !=logininfo[0] <span style="color: #0000ff;">or</span> loginpw !=logininfo[1<span style="color: #000000;">]:
+</span><span style="color: #008080;">16</span>         num+=1
+<span style="color: #008080;">17</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">登录失败%s次</span><span style="color: #800000;">"</span>%<span style="color: #000000;">num)
+</span><span style="color: #008080;">18</span>     <span style="color: #008000;">#</span><span style="color: #008000;">用户名和密码均正确</span>
+<span style="color: #008080;">19</span>     <span style="color: #0000ff;">elif</span> loginname ==logininfo[0] <span style="color: #0000ff;">and</span> loginpw == logininfo[1<span style="color: #000000;">]:
+</span><span style="color: #008080;">20</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">欢迎%s登陆，今天的日期是%s</span><span style="color: #800000;">"</span>%(loginname,time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">,time.localtime(time.time()))))
+</span><span style="color: #008080;">21</span>         <span style="color: #0000ff;">break</span></pre>
+</div>
+<p> </p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;"> </span></p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;"><strong>#第三种用户名和密码存储到list</strong></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">import</span><span style="color: #000000;">  time
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">#</span><span style="color: #008000;">用户名及密码存储</span>
+<span style="color: #008080;"> 3</span> logininfo=[{<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao1</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">1234</span><span style="color: #800000;">'</span>},{<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao2</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">12345</span><span style="color: #800000;">'</span>},{<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao3</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">}]
+</span><span style="color: #008080;"> 4</span> num =<span style="color: #000000;">0
+</span><span style="color: #008080;"> 5</span> <span style="color: #008000;">#</span><span style="color: #008000;">允许3次输入错误</span>
+<span style="color: #008080;"> 6</span> <span style="color: #0000ff;">while</span> num&lt;3<span style="color: #000000;">:
+</span><span style="color: #008080;"> 7</span>     loginname=input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入用户名：</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;"> 8</span>     loginpw=input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入密码：</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;"> 9</span>     <span style="color: #008000;">#</span><span style="color: #008000;">空格和空的判断，strip去除空格，判断字符长度</span>
+<span style="color: #008080;">10</span>     <span style="color: #0000ff;">if</span> len(loginname.strip())==0  <span style="color: #0000ff;">or</span> len(loginpw.strip())==<span style="color: #000000;">0:
+</span><span style="color: #008080;">11</span>         num+=1
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">登录失败%s次</span><span style="color: #800000;">"</span>%<span style="color: #000000;">num)
+</span><span style="color: #008080;">13</span>     <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+</span><span style="color: #008080;">14</span>         t =<span style="color: #000000;"> 0
+</span><span style="color: #008080;">15</span>         <span style="color: #008000;">#</span><span style="color: #008000;">遍历list，验证用户名和密码</span>
+<span style="color: #008080;">16</span>         <span style="color: #0000ff;">for</span> i  <span style="color: #0000ff;">in</span><span style="color: #000000;"> logininfo:
+</span><span style="color: #008080;">17</span>            <span style="color: #008000;">#</span><span style="color: #008000;">字典转换列表</span>
+<span style="color: #008080;">18</span>            name=<span style="color: #000000;">list(i.keys())
+</span><span style="color: #008080;">19</span>            passwd=<span style="color: #000000;">list(i.values())
+</span><span style="color: #008080;">20</span>            <span style="color: #0000ff;">if</span> t&lt;len(logininfo)-1<span style="color: #000000;">:
+</span><span style="color: #008080;">21</span>                <span style="color: #0000ff;">if</span> loginname != name[0] <span style="color: #0000ff;">or</span> loginpw !=<span style="color: #000000;"> passwd[0] :
+</span><span style="color: #008080;">22</span>                    t+=1
+<span style="color: #008080;">23</span>                <span style="color: #0000ff;">elif</span> loginname==name[0] <span style="color: #0000ff;">and</span> loginpw==<span style="color: #000000;">passwd[0]:
+</span><span style="color: #008080;">24</span>                    num=4
+<span style="color: #008080;">25</span>                    <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">欢迎%s登陆，今天的日期是%s</span><span style="color: #800000;">"</span> %(loginname, time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">, time.localtime(time.time()))))
+</span><span style="color: #008080;">26</span>            <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+</span><span style="color: #008080;">27</span>                <span style="color: #0000ff;">if</span> loginname != name[0] <span style="color: #0000ff;">or</span> loginpw !=<span style="color: #000000;"> passwd[0]:
+</span><span style="color: #008080;">28</span>                    t+=1
+<span style="color: #008080;">29</span>                    num+=1
+<span style="color: #008080;">30</span>                    <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;">num)
+</span><span style="color: #008080;">31</span>                <span style="color: #0000ff;">elif</span> loginname==name[0] <span style="color: #0000ff;">and</span> loginpw==<span style="color: #000000;">passwd[0]:
+</span><span style="color: #008080;">32</span>                    num=4
+<span style="color: #008080;">33</span>                    <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">欢迎%s登陆，今天的日期是%s</span><span style="color: #800000;">"</span> %(loginname, time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span>, time.localtime(time.time()))))</pre>
+</div>
+<p> </p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;"><strong> #第四种字典存储用户名和密码</strong></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> time
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #008000;">#</span><span style="color: #008000;"> 用户名及密码存储</span>
+<span style="color: #008080;"> 4</span> login_info = {<span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao1</span><span style="color: #800000;">'</span>: <span style="color: #800000;">'</span><span style="color: #800000;">1234</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao2</span><span style="color: #800000;">'</span>: <span style="color: #800000;">'</span><span style="color: #800000;">12345</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">zhaozhao3</span><span style="color: #800000;">'</span>: <span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">}
+</span><span style="color: #008080;"> 5</span> 
+<span style="color: #008080;"> 6</span> <span style="color: #008000;">#</span><span style="color: #008000;"> 允许3次输入错误</span>
+<span style="color: #008080;"> 7</span> num =<span style="color: #000000;"> 0
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">while</span> num &lt; 3<span style="color: #000000;">:
+</span><span style="color: #008080;"> 9</span>     loginname = str(input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入用户名：</span><span style="color: #800000;">"</span><span style="color: #000000;">)).strip()
+</span><span style="color: #008080;">10</span>     loginpw = str(input(<span style="color: #800000;">"</span><span style="color: #800000;">请输入密码：</span><span style="color: #800000;">"</span><span style="color: #000000;">)).strip()
+</span><span style="color: #008080;">11</span>     <span style="color: #008000;">#</span><span style="color: #008000;"> 空格和空的判断，strip去除空格，判断字符长度</span>
+<span style="color: #008080;">12</span>     <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">not</span> loginname <span style="color: #0000ff;">or</span> <span style="color: #0000ff;">not</span> loginpw <span style="color: #0000ff;">or</span> loginname <span style="color: #0000ff;">not</span> <span style="color: #0000ff;">in</span><span style="color: #000000;"> login_info:
+</span><span style="color: #008080;">13</span>         num += 1
+<span style="color: #008080;">14</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;"> num)
+</span><span style="color: #008080;">15</span>         <span style="color: #0000ff;">continue</span>
+<span style="color: #008080;">16</span> 
+<span style="color: #008080;">17</span>     <span style="color: #0000ff;">if</span> login_info[loginname] ==<span style="color: #000000;"> loginpw:
+</span><span style="color: #008080;">18</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">欢迎%s登陆，今天的日期是%s</span><span style="color: #800000;">"</span> % (loginname, time.strftime(<span style="color: #800000;">'</span><span style="color: #800000;">%Y-%m-%d</span><span style="color: #800000;">'</span><span style="color: #000000;">, time.localtime(time.time()))))
+</span><span style="color: #008080;">19</span>         <span style="color: #0000ff;">break</span>
+<span style="color: #008080;">20</span>     <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+</span><span style="color: #008080;">21</span>         num += 1
+<span style="color: #008080;">22</span>         <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">登录失败%s次</span><span style="color: #800000;">"</span> %<span style="color: #000000;"> num)
+</span><span style="color: #008080;">23</span>         <span style="color: #0000ff;">continue</span></pre>
+</div>
+<p> </p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 14px;"> </span></p>
+</div></div>

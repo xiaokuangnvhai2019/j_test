@@ -1,0 +1,59 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11098689.html" id="cb_post_title_url">python_加密</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>1、MD5加密</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> hashlib
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">md5 加密是不可逆的，只能加密不能解密</span>
+password=<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span><span style="color: #000000;">
+m</span>=hashlib.md5(password.encode()) <span style="color: #008000;">#</span><span style="color: #008000;">加密需要二进制类型，需要encode一下，返回的是object</span>
+<span style="color: #0000ff;">print</span>(m.hexdigest()) <span style="color: #008000;">#</span><span style="color: #008000;">需要用hexdigest获取加密后的字符串</span></pre>
+</div>
+<p>2、sha3系列加密</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> hashlib
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;">sha系统加密方式，仅仅是加密长度区别，比如256表示产生的加密字符长64位</span>
+f=open(<span style="color: #800000;">'</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">rb</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">二进制打开文件</span>
+content=hashlib.sha3_256(f.read()) <span style="color: #008000;">#</span><span style="color: #008000;">文件内容加密</span>
+<span style="color: #0000ff;">print</span>(content.hexdigest())</pre>
+</div>
+<p>加密是不可逆的，那么什么网上还有反查询密码的功能，那是通过撞库，也就是拿到了一批密码的加密后的字符串，这个密码和加密字符串对应存库，当你输入加密字符串就可以查出来密码</p>
+<p>为了避免这种情况，我们在加密密码的时候可以使用加盐的方式进行增加密码的复杂度，防止由于密码太简单导致被破解</p>
+<p> </p>
+<p>3、加盐</p>
+<p>加盐的实质就是加密的时候直接给密码加一串固定字符串，加密后的字符串就是密码+固定串</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> hashlib
+</span><span style="color: #008000;">#</span><span style="color: #008000;">加盐</span>
+<span style="color: #0000ff;">def</span> my_md5(content,salt=<span style="color: #800000;">'</span><span style="color: #800000;">sfg@#$</span><span style="color: #800000;">'</span><span style="color: #000000;">):
+    s</span>=str(content)+<span style="color: #000000;">salt
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> hashlib.md5(s.encode()).hexdigest()
+</span><span style="color: #0000ff;">print</span>(my_md5(<span style="color: #800000;">'</span><span style="color: #800000;">123456</span><span style="color: #800000;">'</span>))</pre>
+</div>
+<p> </p>
+</div></div>

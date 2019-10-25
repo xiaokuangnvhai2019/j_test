@@ -1,0 +1,60 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11279226.html" id="cb_post_title_url">python_线程池</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>线程池，比如我们有个方法要多线程运行1000次，我们不能声明1000个线程，这时候我们可以通过线程池设定50个线程，那么运行的时候就会自动分配给者1000次，也就是每个线程20次</p>
+<p>如下例子就是线程池例子：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> requests,threading
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> faker
+</span><span style="color: #0000ff;">import</span> threadpool <span style="color: #008000;">#</span><span style="color: #008000;">线程池模块</span>
+<span style="color: #000000;">
+f</span>=faker.Faker(locale=<span style="color: #800000;">"</span><span style="color: #800000;">zh-CN</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> down_load_file(url):
+    r</span>=requests.get(url) <span style="color: #008000;">#</span><span style="color: #008000;">get请求</span>
+    m=f.name() <span style="color: #008000;">#</span><span style="color: #008000;">随机生成文件名字</span>
+    with open(<span style="color: #800000;">'</span><span style="color: #800000;">./pic/%s.jpg</span><span style="color: #800000;">'</span>%m,<span style="color: #800000;">'</span><span style="color: #800000;">wb</span><span style="color: #800000;">'</span>) as fw: <span style="color: #008000;">#</span><span style="color: #008000;">图片二进制写入文件，保存为jpg格式</span>
+<span style="color: #000000;">        fw.write(r.content)
+
+url_list</span>=<span style="color: #000000;">[
+            </span><span style="color: #800000;">'</span><span style="color: #800000;">http://www.nnzhp.cn/wp-content/uploads/2019/02/jiami.jpeg</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            </span><span style="color: #800000;">'</span><span style="color: #800000;">http://www.nnzhp.cn/wp-content/uploads/2019/03/js.png</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            </span><span style="color: #800000;">'</span><span style="color: #800000;">http://www.nnzhp.cn/wp-content/uploads/2018/08/ab389f04cb5b57344ef9655428bccaec.png</span><span style="color: #800000;">'</span><span style="color: #000000;">
+        ]
+
+pool</span>=threadpool.ThreadPool(3)  <span style="color: #008000;">#</span><span style="color: #008000;">创建一个线程池，指定线程池最多有多少个线程</span>
+<span style="color: #000000;">
+reqs</span>=threadpool.makeRequests(down_load_file,url_list) <span style="color: #008000;">#</span><span style="color: #008000;">调用生成启动线程用的参数</span>
+<span style="color: #000000;">
+[pool.putRequest(req) </span><span style="color: #0000ff;">for</span> req <span style="color: #0000ff;">in</span> reqs] <span style="color: #008000;">#</span><span style="color: #008000;">循环启动线程</span>
+
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">当前的线程数</span><span style="color: #800000;">"</span>,threading.activeCount()) <span style="color: #008000;">#</span><span style="color: #008000;">当前线程数，统计的线程数包括主线程</span>
+<span style="color: #000000;">
+pool.wait() </span><span style="color: #008000;">#</span><span style="color: #008000;">等待子线程</span>
+
+<span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">测试结束</span><span style="color: #800000;">"</span>) </pre>
+</div>
+<p> </p>
+</div></div>

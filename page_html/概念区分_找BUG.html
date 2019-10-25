@@ -1,0 +1,51 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11188264.html" id="cb_post_title_url">概念区分_找BUG</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p> </p>
+<p>如下一段代码标#号的都是错误的代码，错误的原因是什么呢？</p>
+<div class="cnblogs_code">
+<pre>var = [1,2,3,4<span style="color: #000000;">]
+var[</span>1]=5<span style="color: #000000;">
+var1 </span>= <span style="color: #800000;">'</span><span style="color: #800000;">abc123</span><span style="color: #800000;">'</span>
+<span style="color: #008000;">#</span><span style="color: #008000;">var1[0]='s'</span>
+var2 = (<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">b</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">c</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">d</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #008000;">#</span><span style="color: #008000;">var2[-1]=2</span>
+var3={<span style="color: #800000;">'</span><span style="color: #800000;">a</span><span style="color: #800000;">'</span>,3,<span style="color: #800000;">'</span><span style="color: #800000;">b</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">4</span><span style="color: #800000;">'</span><span style="color: #000000;">}
+</span><span style="color: #008000;">#</span><span style="color: #008000;">var3[2]='c'</span>
+var4={<span style="color: #800000;">'</span><span style="color: #800000;">name</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">lily</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">sex</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">nv</span><span style="color: #800000;">'</span><span style="color: #000000;">}
+</span><span style="color: #008000;">#</span><span style="color: #008000;">print(var4['age'])</span></pre>
+</div>
+<p>1、var1[0]='s'</p>
+<p>字符串不支持通过下标赋值这种方式修改，字符串本身是不能修改的，如果想达到错误代码的效果可通过如下方式</p>
+<p>var1<span style="color: #a71d5d;">=var1<span style="color: #63a35c;">.<span style="color: #0086b3;">replace<span style="color: #63a35c;">(<span style="color: #008080; font-weight: bold;">'a'<span style="color: #63a35c;">,<span style="color: #008080; font-weight: bold;">'s'<span style="color: #63a35c;">)  <br/></span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">这种方式替换值后又重新赋值给变量VAR1</span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">2、<span style="color: #008000;">var2[-1]=2</span></span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">元组是不支持修改的，一旦声明不可修改</span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">3、<span style="color: #008000;">var3[2]='c'</span></span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">集合不可通过下标方式进行赋值，赋值只能用set，另外集合无序且不可重复</span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">4、<span style="color: #008000;">print(var4['age'])</span></span></span></span></span></span></span></span></span></p>
+<p><span style="color: #a71d5d;"><span style="color: #63a35c;"><span style="color: #0086b3;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;"><span style="color: #008080; font-weight: bold;"><span style="color: #63a35c;">访问了字典没有的KEY，所以报错</span></span></span></span></span></span></span></span></p>
+</div></div>

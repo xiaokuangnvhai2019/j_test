@@ -1,0 +1,86 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11474766.html" id="cb_post_title_url">python_100个数多线程打印</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>问题：1-100个数多线程打印</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> threadpool
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> pool_num(num,p_methond,num_list):
+    pool</span>=threadpool.ThreadPool(num) <span style="color: #008000;">#</span><span style="color: #008000;">声明线程池个数</span>
+    reqs=threadpool.makeRequests(p_methond,num_list) <span style="color: #008000;">#生成</span><span style="color: #008000;">线程池启动参数</span>
+    [pool.putRequest(req) <span style="color: #0000ff;">for</span> req <span style="color: #0000ff;">in</span> reqs] <span style="color: #008000;">#</span><span style="color: #008000;">循环执行启动线程</span>
+<span style="color: #000000;">    pool.wait() #等待子线程
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> p_methond(num):
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(num)
+num_list</span>=[i <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(1,101<span style="color: #000000;">)]
+pool_num(</span>3,p_methond,num_list)</pre>
+</div>
+<p> 问题：1-100个数，线程数可以自定义，然后多线程打印这1-100个数，要求每个线程打印的数分段连续打印，比如说用2个线程，那么线程1是打印1-50，线程2是打印51-100</p>
+<p>线程方式实现</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> threading
+
+</span><span style="color: #0000ff;">def</span> func(arg): <span style="color: #008000;">#</span><span style="color: #008000;">打印数字函数</span>
+    <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> arg:
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">当前线程：</span><span style="color: #800000;">"</span>, threading.currentThread().name, <span style="color: #800000;">"</span><span style="color: #800000;">----</span><span style="color: #800000;">"</span>, i+1<span style="color: #000000;">)
+
+</span><span style="color: #0000ff;">def</span> thread_num(total,num): <span style="color: #008000;">#</span><span style="color: #008000;">传参是打印数字的总数及线程数</span>
+    data = [x <span style="color: #0000ff;">for</span> x <span style="color: #0000ff;">in</span> range(0, total)] <span style="color: #008000;">#</span><span style="color: #008000;">所有的数字循环放入list</span>
+    split_data = [data[i: i + int(total/num)] <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(0, len(data), int(total/num))] <span style="color: #008000;">#</span><span style="color: #008000;">带步长的循环list，且每段放入一个list，生成2维数组</span>
+
+    <span style="color: #0000ff;">for</span> d <span style="color: #0000ff;">in</span> split_data: <span style="color: #008000;">#</span><span style="color: #008000;">循环二维数组，每次取一个数组，作为打印函数的传参</span>
+        t = threading.Thread(target=func, args=(d,))  <span style="color: #008000;">#</span><span style="color: #008000;">生成线程且调用方法及给予传参</span>
+        t = t.start()<span style="color: #008000;">#</span><span style="color: #008000;">启动线程</span>
+
+    <span style="color: #0000ff;">while</span> threading.active_count()!=1: <span style="color: #008000;">#</span><span style="color: #008000;">等待子线程</span>
+        <span style="color: #0000ff;">pass</span><span style="color: #000000;">
+
+
+thread_num(</span>13,2) <span style="color: #008000;">#</span><span style="color: #008000;">调用线程方法</span></pre>
+</div>
+<p>numpy模块分段：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> threading
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> numpy
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> func(arg):
+    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> arg:
+        </span><span style="color: #0000ff;">print</span>(threading.currentThread().name, <span style="color: #800000;">"</span><span style="color: #800000;">----</span><span style="color: #800000;">"</span>, i+1<span style="color: #000000;">)
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> thread_num(total,num):
+    result</span>=<span style="color: #000000;">numpy.array_split(range(total),num) #分段
+    </span><span style="color: #0000ff;">for</span>  i <span style="color: #0000ff;">in</span><span style="color: #000000;"> result:
+        t</span>=threading.Thread(target=func,args=<span style="color: #000000;">(i,)) #声明线程
+        t.start() #启动线程
+
+    </span><span style="color: #0000ff;">while</span> threading.active_count()!=1<span style="color: #000000;">: #等待子线程
+        </span><span style="color: #0000ff;">pass</span></pre>
+</div>
+<p>随记：问题--为什么等子线程</p>
+<p>开了几个线程执行任务，如果不等待线程， 如果你的进程挂了的时候，线程也会挂掉</p>
+<p>还有一个场景， 如果你要等待所有线程处理完后的结果，那就必须等待了</p>
+<p> </p>
+</div></div>

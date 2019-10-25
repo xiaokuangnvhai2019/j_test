@@ -1,0 +1,51 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11338639.html" id="cb_post_title_url">Linux_Java_jdk和环境变量配置</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p><strong>一、第一步，下载JDK</strong></p>
+<p>查看Linux位数：uname -a </p>
+<p>根据Linux位数，下载对应得JDK</p>
+<p>下载地址：https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</p>
+<p> </p>
+<p><strong>二、上传到Linux及解压</strong></p>
+<p>上传命令，rz(如该命令没有，安装即可使用)</p>
+<p>解压命令，tar -xvf jdk文件</p>
+<p> </p>
+<p><strong>三、配置环境变量</strong></p>
+<p>配置环境变量：vi  /etc/profile </p>
+<div class="container">
+<div class="line number1 index0 alt2"><code class="bash plain">JAVA_HOME=</code><code class="bash plain">/home/gcs/user/java/jdk1</code><code class="bash plain">.8.0_111</code></div>
+<div class="line number2 index1 alt1"><code class="bash plain">PATH=$JAVA_HOME</code><code class="bash plain">/bin</code><code class="bash plain">:$PATH</code></div>
+<div class="line number3 index2 alt2"><code class="bash plain">CLASSPATH=$JAVA_HOME</code><code class="bash plain">/lib/dt</code><code class="bash plain">.jar:$JAVA_HOME</code><code class="bash plain">/lib/tools</code><code class="bash plain">.jar</code></div>
+<div class="line number4 index3 alt1"><code class="bash functions">export</code> <code class="bash plain">JAVA_HOME</code></div>
+<div class="line number5 index4 alt2"><code class="bash functions">export</code> <code class="bash plain">PATH</code></div>
+<div class="line number6 index5 alt1"><code class="bash functions">export</code> <code class="bash plain">CLASSPATH</code></div>
+<div class="line number6 index5 alt1"> </div>
+<div class="line number6 index5 alt1">配置环境生效： source /etc/profile</div>
+</div>
+<p> </p>
+<p><strong>四、验证是否安装完成</strong></p>
+<p> java -version 看是否生效。若出现jdk版本号，则安装并配置环境变量成功</p>
+</div></div>

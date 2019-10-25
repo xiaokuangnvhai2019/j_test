@@ -1,0 +1,116 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11211194.html" id="cb_post_title_url">python_继承</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>python中继承这里主要写3点，一个是继承调用关系，一个是方法的复写，最后一个是继承后实例方法的使用等</p>
+<p>1、继承，实例化等，通过实例进行巩固练习</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> animal: <span style="color: #008000;">#</span><span style="color: #008000;">父类</span>
+
+    <span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span><span style="color: #000000;">(self,leg,hand):
+        self.leg</span>=<span style="color: #000000;">leg
+        self.hand</span>=<span style="color: #000000;">hand
+
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> run(self):
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(self.leg)
+
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> fly(self):
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(self.hand)
+
+</span><span style="color: #0000ff;">class</span> bird(animal): <span style="color: #008000;">#</span><span style="color: #008000;">继承animal父类</span>
+
+    <span style="color: #0000ff;">def</span><span style="color: #000000;">  high(self):
+        self.fly() </span><span style="color: #008000;">#</span><span style="color: #008000;">子类中可调用父类方法</span>
+        <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">high</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+        </span><span style="color: #0000ff;">print</span>(self.leg) <span style="color: #008000;">#</span><span style="color: #008000;">子类中可调用父类属性</span>
+<span style="color: #000000;">
+
+
+t</span>=bird(<span style="color: #800000;">'</span><span style="color: #800000;">leg</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">hand</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+t.fly() </span><span style="color: #008000;">#</span><span style="color: #008000;">子类实例对象可调用本类方法</span>
+t.high() <span style="color: #008000;">#</span><span style="color: #008000;">子类实例对象可调用父类方法</span>
+t.run() <span style="color: #008000;">#</span><span style="color: #008000;">子类实例对象可调用父类方法</span>
+<span style="color: #0000ff;">print</span>(t.hand) <span style="color: #008000;">#</span><span style="color: #008000;">子类实例对象可调用父类属性</span>
+<span style="color: #0000ff;">print</span>(t.leg) <span style="color: #008000;">#</span><span style="color: #008000;">子类实例对象可调用父类属性</span></pre>
+</div>
+<p> 2、子类复写父类方法</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> animal: <span style="color: #008000;">#</span><span style="color: #008000;">父类</span>
+
+    <span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span><span style="color: #000000;">(self,leg,hand):
+        self.leg</span>=<span style="color: #000000;">leg
+        self.hand</span>=<span style="color: #000000;">hand
+
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> run(self):
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(self.leg)
+
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> fly(self):
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(self.hand)
+
+</span><span style="color: #0000ff;">class</span> bird(animal): <span style="color: #008000;">#</span><span style="color: #008000;">继承animal父类</span>
+
+    <span style="color: #0000ff;">def</span>  fly(self): <span style="color: #008000;">#</span><span style="color: #008000;">继承父类方法功能之外在新增功能</span>
+        super().fly() <span style="color: #008000;">#</span><span style="color: #008000;">继承父类方法</span>
+        <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">fly</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">子类方法新功能</span>
+
+    <span style="color: #0000ff;">def</span> run(self): <span style="color: #008000;">#</span><span style="color: #008000;">完全复写父类方法</span>
+        <span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">run---run</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+
+
+t</span>=bird(<span style="color: #800000;">'</span><span style="color: #800000;">leg</span><span style="color: #800000;">'</span>,<span style="color: #800000;">'</span><span style="color: #800000;">hand</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+t.fly() </span><span style="color: #008000;">#</span><span style="color: #008000;">调用子类方法</span>
+t.run() <span style="color: #008000;">#</span><span style="color: #008000;">调用子类方法</span></pre>
+</div>
+<p>3、多继承</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">class</span> A(object):<span style="color: #008000;">#</span><span style="color: #008000;">新式类</span>
+    <span style="color: #0000ff;">def</span><span style="color: #000000;"> say(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">A</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">class</span><span style="color: #000000;"> B(A):
+
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> say(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">B</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+
+</span><span style="color: #0000ff;">class</span><span style="color: #000000;"> C(A):
+    
+    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> say(self):
+        </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">c</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+</span><span style="color: #0000ff;">class</span><span style="color: #000000;"> D(C, B):
+    </span><span style="color: #0000ff;">pass</span><span style="color: #000000;">
+
+d </span>=<span style="color: #000000;"> D()
+</span><span style="color: #0000ff;">print</span>(D.mro()) <span style="color: #008000;">#</span><span style="color: #008000;">复杂多继承通过mro，查看继承先后顺序，python是根据这个顺序进行运行的</span>
+d.say()</pre>
+</div>
+<div><img alt="" data-media-type="image"/></div>
+<div> </div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201907/783015-20190724223911285-78913250.png"/></p>
+<p> </p>
+</div></div>

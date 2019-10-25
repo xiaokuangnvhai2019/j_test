@@ -1,0 +1,139 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11098677.html" id="cb_post_title_url">python_excel操作</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>python操作excel主要用到xlrd和xlwt这两个库，即xlrd是读excel，xlwt是写excel的库</p>
+<p>xlwt缺点，无法复制Excel格式</p>
+<p>xlutils 可以复制Excel格式</p>
+<p>一、安装第三方库</p>
+<p>pip install xlrd</p>
+<p>pip  install xlwt</p>
+<p>pip install xlutils</p>
+<p>二、第三方库的使用</p>
+<p>1、xlrd  读Excel</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> xlrd
+
+book</span>=xlrd.open_workbook(<span style="color: #800000;">"</span><span style="color: #800000;">demo2.xls</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+sheet1</span>=book.sheet_by_index(0) <span style="color: #008000;">#</span><span style="color: #008000;">通过索引取TAB，且返回的是对象</span><span style="color: #008000;">
+#</span><span style="color: #008000;">sheet1=book.sheet_by_name('sheet1')#通过名字取TAB，且返回的是对象</span>
+
+<span style="color: #0000ff;">print</span>(sheet1.row_values(1)) <span style="color: #008000;">#</span><span style="color: #008000;">取某一行的数据</span>
+<span style="color: #0000ff;">print</span>(sheet1.col_values(0)) <span style="color: #008000;">#</span><span style="color: #008000;">取某一列的数据</span>
+
+<span style="color: #0000ff;">print</span>(sheet1.cell_value(0,0)) <span style="color: #008000;">#</span><span style="color: #008000;">取某一单元格内容</span>
+<span style="color: #0000ff;">print</span>(sheet1.cell(0,0).value) <span style="color: #008000;">#</span><span style="color: #008000;">取某一单元格内容</span>
+<span style="color: #0000ff;">print</span>(sheet1.col_values(1,0,6)) <span style="color: #008000;">#</span><span style="color: #008000;">取从第一列的第0行到第6行的数据，不包含第6行</span>
+
+<span style="color: #0000ff;">print</span>(sheet1.name) <span style="color: #008000;">#</span><span style="color: #008000;">取TAB名称</span>
+<span style="color: #0000ff;">print</span>(sheet1.nrows) <span style="color: #008000;">#</span><span style="color: #008000;">取共多少行</span>
+<span style="color: #0000ff;">print</span>(sheet1.ncols) <span style="color: #008000;">#</span><span style="color: #008000;">取共多少列</span>
+<span style="color: #0000ff;">print</span>(sheet1.number) <span style="color: #008000;">#</span><span style="color: #008000;">取TAB的index</span>
+<span style="color: #0000ff;">print</span>(sheet1.row_len(0)) <span style="color: #008000;">#</span><span style="color: #008000;">每行的长度</span></pre>
+</div>
+<p>2、xlwt 写Excel</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> xlwt
+book</span>=xlwt.Workbook() <span style="color: #008000;">#</span><span style="color: #008000;">声明对象</span>
+sheet=book.add_sheet(<span style="color: #800000;">'</span><span style="color: #800000;">标签1</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">添加TAB签</span>
+list=[<span style="color: #800000;">"</span><span style="color: #800000;">姓名</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">年龄</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">性别</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">班级</span><span style="color: #800000;">"</span>] <span style="color: #008000;">#</span><span style="color: #008000;">表头数据</span>
+x,y=<span style="color: #000000;">0,0
+</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> list:
+ sheet.write(x,y,i)  </span><span style="color: #008000;">#</span><span style="color: #008000;">遍历写表头</span>
+ y+=1<span style="color: #000000;">
+book.save(</span><span style="color: #800000;">"</span><span style="color: #800000;">b.xls</span><span style="color: #800000;">"</span><span style="color: #000000;">) 
+</span><span style="color: #008000;">#</span><span style="color: #008000;">保存的时候，如果你用的是微软的Office，后缀就用.xls</span><span style="color: #008000;">
+#</span><span style="color: #008000;">如果是wps .xls,.xlsx</span></pre>
+</div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201906/783015-20190628110605701-134133764.png"/></p>
+<p> </p>
+<p>3、xlutils 复制修改</p>
+<p>修改的思路是：打开----复制----修改</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> xlrd
+</span><span style="color: #0000ff;">from</span> xlutils <span style="color: #0000ff;">import</span><span style="color: #000000;"> copy
+
+book</span>=xlrd.open_workbook(<span style="color: #800000;">"</span><span style="color: #800000;">book.xls</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">打开文件</span>
+newbook=copy.copy(book) <span style="color: #008000;">#</span><span style="color: #008000;">复制文件</span>
+<span style="color: #000000;">
+sheet</span>=newbook.get_sheet(0) <span style="color: #008000;">#</span><span style="color: #008000;">获取表TAB</span>
+list=[<span style="color: #800000;">"</span><span style="color: #800000;">姓名</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">年龄</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">性别</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">班级</span><span style="color: #800000;">"</span><span style="color: #000000;">] 
+
+</span><span style="color: #0000ff;">for</span> col,t <span style="color: #0000ff;">in</span> enumerate(list): <span style="color: #008000;">#</span><span style="color: #008000;">枚举方式遍历写表头</span>
+<span style="color: #000000;">    sheet.write(0,col,t)
+newbook.save(</span><span style="color: #800000;">"</span><span style="color: #800000;">book.xls</span><span style="color: #800000;">"</span>)</pre>
+</div>
+<p><img alt="" src="https://img2018.cnblogs.com/blog/783015/201906/783015-20190628110528990-327517395.png"/></p>
+<p> </p>
+<p>4、写复杂的EXCEL，涉及合并单元格</p>
+<pre><span style="color: #000000;">write_merge</span> 这个方法可以合并单元格，<span style="color: #000000;">write_merge</span>（row,row+n,col,col+n,value）参数含义</pre>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> xlwt
+
+</span><span style="color: #0000ff;">def</span> set_style(name,height,bold=<span style="color: #000000;">False):
+    style</span>=<span style="color: #000000;">xlwt.XFStyle()
+
+    font</span>=<span style="color: #000000;">xlwt.Font()
+    font.name</span>=<span style="color: #000000;">name
+    font.bold</span>=<span style="color: #000000;">bold
+    font.colour_index</span>=4<span style="color: #000000;">
+    font.height</span>=<span style="color: #000000;">height
+
+
+    style.font</span>=<span style="color: #000000;">font
+
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> style
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> write_excel():
+    f</span>=<span style="color: #000000;">xlwt.Workbook()
+
+    sheet1</span>=f.add_sheet(u<span style="color: #800000;">'</span><span style="color: #800000;">sheet1</span><span style="color: #800000;">'</span>,cell_overwrite_ok=<span style="color: #000000;">True)
+    row0</span>=[u<span style="color: #800000;">'</span><span style="color: #800000;">业务</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">状态</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">北京</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">上海</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">广州</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">深圳</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">状态小计</span><span style="color: #800000;">'</span>,u<span style="color: #800000;">'</span><span style="color: #800000;">合计</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+    column0 </span>= [u<span style="color: #800000;">'</span><span style="color: #800000;">机票</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">船票</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">火车票</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">汽车票</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">其它</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+    status </span>= [u<span style="color: #800000;">'</span><span style="color: #800000;">预订</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">出票</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">退票</span><span style="color: #800000;">'</span>, u<span style="color: #800000;">'</span><span style="color: #800000;">业务小计</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+
+    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(0,len(row0)):
+        sheet1.write(0,i,row0[i],set_style(</span><span style="color: #800000;">'</span><span style="color: #800000;">Times New Roman</span><span style="color: #800000;">'</span>,220<span style="color: #000000;">,True))
+    i,j</span>=1<span style="color: #000000;">,0
+    </span><span style="color: #0000ff;">while</span> i&lt;4*len(column0) <span style="color: #0000ff;">and</span> j&lt;<span style="color: #000000;">len(column0):
+        sheet1.write_merge(i,i</span>+3,0,0,column0[j],set_style(<span style="color: #800000;">'</span><span style="color: #800000;">Arial</span><span style="color: #800000;">'</span>,220<span style="color: #000000;">,True))
+        sheet1.write_merge(i,i</span>+3,7,7<span style="color: #000000;">)
+        i</span>+=4<span style="color: #000000;">
+        j</span>+=1<span style="color: #000000;">
+    sheet1.write_merge(</span>21,21,0,1,u<span style="color: #800000;">'</span><span style="color: #800000;">合计</span><span style="color: #800000;">'</span>,set_style(<span style="color: #800000;">'</span><span style="color: #800000;">Times New Roman</span><span style="color: #800000;">'</span>,220<span style="color: #000000;">,True))
+
+    i</span>=<span style="color: #000000;">0
+    </span><span style="color: #0000ff;">while</span> i&lt;4*<span style="color: #000000;">len(column0):
+        </span><span style="color: #0000ff;">for</span> j <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(0,len(status)):
+            sheet1.write(j</span>+i+1,1<span style="color: #000000;">,status[j])
+        i</span>+=4<span style="color: #000000;">
+    f.save(</span><span style="color: #800000;">'</span><span style="color: #800000;">demo1.xlsx</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+
+</span><span style="color: #0000ff;">if</span> <span style="color: #800080;">__name__</span>==<span style="color: #800000;">'</span><span style="color: #800000;">__main__</span><span style="color: #800000;">'</span><span style="color: #000000;">:
+    write_excel()</span></pre>
+</div>
+<p> <img alt="" src="https://img2018.cnblogs.com/blog/783015/201906/783015-20190628111018692-1499620839.png"/></p>
+<p> </p>
+</div></div>

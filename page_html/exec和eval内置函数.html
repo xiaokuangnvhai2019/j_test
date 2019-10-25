@@ -1,0 +1,83 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11063984.html" id="cb_post_title_url">exec和eval内置函数</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>你在线执行过Python代码吗？他们用的什么方法把你的代码执行的呢，就是今天要学的函数exec，它把你的Python代码一行行的当做字符串进行执行哦，来我们一起看看这个方法吧，朋友们go</p>
+<p>1、exec 使用方法如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">exec 执行计算</span>
+i=12<span style="color: #000000;">
+j</span>=13
+<span style="color: #0000ff;">exec</span>(<span style="color: #800000;">"</span><span style="color: #800000;">answer=i*j</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;">执行字符串中的python代码，并声明answer</span>
+<span style="color: #0000ff;">print</span>(answer) <span style="color: #008000;">#</span><span style="color: #008000;">输出结果</span>
+<br/><br/><br/>
+<span style="color: #008000;">#</span><span style="color: #008000;">exec 执行复杂的函数</span>
+<span style="color: #800000;">'''</span><span style="color: #800000;">
+#a.txt文件内容
+def fact(n):
+    if n == 1:
+        return 1
+    else:
+        return n * fact(n - 1)
+print(fact(6))
+</span><span style="color: #800000;">'''</span><span style="color: #000000;">
+func</span>=<span style="color: #800000;">"</span><span style="color: #800000;">def fact(n):\n\t return 1 if n==1 else n*fact(n-1)</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">exec</span>(func) <span style="color: #008000;">#</span><span style="color: #008000;">执行func代码，声明函数</span>
+a=fact(5) <span style="color: #008000;">#</span><span style="color: #008000;">调用函数</span>
+<span style="color: #0000ff;">print</span>(a) <span style="color: #008000;">#</span><span style="color: #008000;">输出函数</span>
+<br/><br/><br/>
+<span style="color: #008000;">#</span><span style="color: #008000;">exec 执行文件中的代码</span>
+with open(<span style="color: #800000;">'</span><span style="color: #800000;">a.txt</span><span style="color: #800000;">'</span>,encoding=<span style="color: #800000;">"</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">"</span><span style="color: #000000;">) as f:
+    s</span>=f.read() <span style="color: #008000;">#</span><span style="color: #008000;">文件内容读到变量中</span>
+<span style="color: #0000ff;">exec</span>(s) <span style="color: #008000;">#</span><span style="color: #008000;">执行文件代码</span>
+<br/><br/><br/><br/>
+<span style="color: #008000;">#</span><span style="color: #008000;">exec 接受传参</span>
+x=10<span style="color: #000000;">
+y</span>=20<span style="color: #000000;">
+expr</span>=<span style="color: #800000;">"""</span><span style="color: #800000;">
+z=30 
+sum=x+y+z 
+print(sum)
+</span><span style="color: #800000;">"""</span>
+<span style="color: #0000ff;">exec</span>(expr) <span style="color: #008000;">#</span><span style="color: #008000;">默认的X,Y值</span>
+<span style="color: #0000ff;">exec</span> (expr,{<span style="color: #800000;">'</span><span style="color: #800000;">x</span><span style="color: #800000;">'</span>:1,<span style="color: #800000;">'</span><span style="color: #800000;">y</span><span style="color: #800000;">'</span>:2}) <span style="color: #008000;">#</span><span style="color: #008000;">指定x=1,y=2</span></pre>
+</div>
+<p>2、eval() <strong>计算指定表达式的值</strong>。也就是说它要执行的python代码<strong>只能是单个表达式</strong>（注意eval不支持任何形式的赋值操作），而不能是复杂的代码逻辑</p>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">#</span><span style="color: #008000;">eval 执行计算</span>
+x=12<span style="color: #000000;">
+y</span>=13
+<span style="color: #0000ff;">print</span>(evaleval(<span style="color: #800000;">"</span><span style="color: #800000;">x*y</span><span style="color: #800000;">"</span>)) <span style="color: #008000;">#</span><span style="color: #008000;">执行计算，并返回结果</span>
+<span style="color: #0000ff;">print</span>(eval(<span style="color: #800000;">"</span><span style="color: #800000;">x+y</span><span style="color: #800000;">"</span>,{<span style="color: #800000;">"</span><span style="color: #800000;">x</span><span style="color: #800000;">"</span>:1,<span style="color: #800000;">"</span><span style="color: #800000;">y</span><span style="color: #800000;">"</span>:2})) <span style="color: #008000;">#</span><span style="color: #008000;">优先使用局部变量</span></pre>
+</div>
+</div>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;">
+<p><strong>eval()函数和exec()函数的区别：</strong></p>
+<p>eval()函数只能计算单个表达式的值，而exec()函数可以动态运行代码段。</p>
+<p>eval()函数可以有返回值，而exec()函数返回值永远为None。</p>
+</div>
+<div style="white-space: pre-wrap; text-align: left; line-height: 1.75; font-size: 14px;"> </div>
+</div></div>

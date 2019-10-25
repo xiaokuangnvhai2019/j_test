@@ -1,0 +1,82 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>小戳同学 - 博客园</title>
+    
+    <link rel="stylesheet" href="https://www.cnblogs.com/css/blog-common.min.css?v=sqi5FxOybx6gjGoG6Zfy1wD-0AwznLNLYOVx7Y9tIN0">
+    <link id="MainCss" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee.min.css?v=pdMIVgsH8kXt-vOWnlL0N20TlHt3UyP9HzGgocfsP4s">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/coffee/bundle-coffee-mobile.min.css?v=MGucLWekW6t3A88Ks-YfEzrx4X_hEIpMacbOAC9lJUs">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaokuangnvhai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaokuangnvhai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaokuangnvhai/wlwmanifest.xml">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="https://www.cnblogs.com/js/blog-common.min.js?v=ruOFvx8_pDlyiWjHGHyOXclVmNo396_IKB8YFZjMllo"></script>
+    <script>
+        var currentBlogId = 516754;
+        var currentBlogApp = 'xiaokuangnvhai';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>  
+</head><h1 class='postTitle'><a class="postTitle2" href="https://www.cnblogs.com/xiaokuangnvhai/p/11046095.html" id="cb_post_title_url">python_字符串有时可以比较大小哦！</a></h1<div class='postBody'><div class="blogpost-body" id="cnblogs_post_body">
+<p>1、字符串纯数字</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">'</span><span style="color: #800000;">123</span><span style="color: #800000;">'</span><span style="color: #000000;">
+t</span>=<span style="color: #800000;">'</span><span style="color: #800000;">234</span><span style="color: #800000;">'</span>
+<span style="color: #0000ff;">if</span> s&gt;<span style="color: #000000;">t:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&gt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">else</span><span style="color: #000000;">:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&lt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+s</span>&lt;t</pre>
+</div>
+<p> </p>
+<p>2、字符串数字+字母</p>
+<p>按首字母进行比大小</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">'</span><span style="color: #800000;">a123</span><span style="color: #800000;">'</span><span style="color: #000000;">
+t</span>=<span style="color: #800000;">'</span><span style="color: #800000;">b23</span><span style="color: #800000;">'</span>
+<span style="color: #0000ff;">if</span> s&gt;<span style="color: #000000;">t:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&gt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">else</span><span style="color: #000000;">:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&lt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+s</span>&lt;t</pre>
+</div>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">'</span><span style="color: #800000;">c123</span><span style="color: #800000;">'</span><span style="color: #000000;">
+t</span>=<span style="color: #800000;">'</span><span style="color: #800000;">b23</span><span style="color: #800000;">'</span>
+<span style="color: #0000ff;">if</span> s&gt;<span style="color: #000000;">t:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&gt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">else</span><span style="color: #000000;">:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&lt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+s</span>&gt;t</pre>
+</div>
+<p> </p>
+<p>3、字符串字母</p>
+<div class="cnblogs_code">
+<pre>s=<span style="color: #800000;">'</span><span style="color: #800000;">cddd</span><span style="color: #800000;">'</span><span style="color: #000000;">
+t</span>=<span style="color: #800000;">'</span><span style="color: #800000;">bggg</span><span style="color: #800000;">'</span>
+<span style="color: #0000ff;">if</span> s&gt;<span style="color: #000000;">t:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&gt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">else</span><span style="color: #000000;">:
+    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">s&lt;t</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+
+D:\study\python\test\venv\Scripts\python.exe D:</span>/study/python/test/<span style="color: #000000;">dd.py
+s</span>&gt;t</pre>
+</div>
+<p> </p>
+</div></div>
