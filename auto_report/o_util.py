@@ -10,7 +10,7 @@ def spread(arg):
             ret.append(i)
     return ret
 
-
+#读文件
 def read_file(file):
     f_html=open(file,encoding='utf-8')
     content=f_html.read()
@@ -28,6 +28,7 @@ def list_dic(list):
         return  False
     return  dic
 
+#清空文件
 def clear(path):
 
     f = open(path, "a+", encoding="utf-8")  # 擦除写模式
@@ -35,6 +36,7 @@ def clear(path):
     f.truncate()  # 文件清空
     f.close()  # 关闭文件
 
+#查找文件夹下带唯一标识的文件
 def file_list(path,t_time):
     filename_list=[]
     all_file_list=os.listdir(path)

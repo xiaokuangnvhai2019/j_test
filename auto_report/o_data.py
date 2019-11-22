@@ -98,9 +98,13 @@ def test_verify_bug(productid,projectid):
        return    list_dic(not_verify_bug)
 
 
+
+#获取项目名称
 def test_projectname(projectid):
     projectname="select `name` from zt_project where id='%d'"%(projectid)
     return connect_db(projectname)[0]
+
+
 
 #验证项目名称及产品名称是否存在及是对应关系
 def test_product_verify(productid,projectid):
@@ -119,46 +123,4 @@ def test_product_verify(productid,projectid):
         return False
 
 
-
-
-
-#带时间的参数
-#    bug_sql="select count(*) from zt_bug where product='%d' and project='%d' and deleted='0' and activatedCount='0' and openedDate >= '%s' and openedDate <= '%s' "%(productid,projectid,startdate,enddate)
-#
-#     resolved_bug_sql="select count(*) from zt_bug where product = '%d' and project='%d' and deleted = '0' and `status` <> 'active' and resolution <> 'postponed' and resolvedDate >= '%s' and resolvedDate <= '%s'" %(
-# productid,projectid, startdate, enddate)
-#
-#     not_resolved_bug_sql="select count(*) from zt_bug where product = '%d' and project='%d' and deleted = '0' and `status` =  'active' and openedDate <= '%s'" %(
-# productid,projectid, enddate)
-#
-#     postponed_bug_sql="select count(*) from zt_bug where product = '%d' and project='%d' and deleted = '0' and `status` <> 'closed' and resolution = 'postponed' and resolvedDate <= '%s'"%(
-# productid, projectid,enddate)
-#
-#     closed_bug_sql="select count(*) from zt_bug where product='%d'and project='%d' and deleted = '0' and `status` = 'closed' and closedDate >= '%s' and closedDate <= '%s'"% (
-# productid, projectid,startdate,enddate)
-
-
-
-#以设定时间进行查询各状态BUG数
-# def  time_bug():
-#
-#     #新增BUG数
-#     new_bug=connect_db(sql_pakeage()[0])
-#
-#     #已解决bug数
-#     resolved_bug = connect_db(sql_pakeage()[1])
-#
-#     # 未解决BUG数（当前显示BUG状态为未解决的。包含当前还没被解决的、之前遗留的未解决、以及reopen的BUG（累计数据））
-#     not_resolved_bug =  connect_db(sql_pakeage()[2])
-#
-#     # 延期BUG数
-#     postponed_bug= connect_db(sql_pakeage()[3] )
-#
-#     # 已关闭BUG数
-#     closed_bug = connect_db(sql_pakeage()[4] )
-#
-#     statistics_bug = {'新增BUG': new_bug[0], "已解决BUG": resolved_bug[0], "未解决BUG": not_resolved_bug[0], "已关闭BUG": closed_bug[0],
-#                       "延期解决BUG": postponed_bug[0]}
-#
-#     return  statistics_bug
 
